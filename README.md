@@ -1,3 +1,3 @@
-# ActuarialRegression
+# Actuarial Regression
 
 Test Upload
