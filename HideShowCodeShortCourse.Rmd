@@ -1,11 +1,4 @@
 
-```{r echo = FALSE}
-QUIZ = TRUE
-ANIMATION = TRUE
-#SHOW_PDF = TRUE
-#ANIMATIONHOOK <- 'gifski'
-
-```
 
 ```{r echo = FALSE}
 B1 <- '<h5 style="text-align: center;"><a id="displayExample.'
@@ -52,29 +45,18 @@ HideSolution <- function(arg1,arg2){
   return(paste(H1,arg1,'"',H2,arg1,H3,arg1,H4a,arg2,H4b,arg1,H5, sep=""))
 }
 
-```
 
-```{r echo = FALSE, eval = PdfEval}
-# Make eval = TRUE for pdf output
-# Make eval = FALSE for html output
-# Switches that control the number of animations 
-QUIZ = FALSE
-ANIMATION = FALSE 
-#SHOW_PDF = TRUE
-#ANIMATIONHOOK = NULL
+T1 <- '<h6 style="text-align: left;"><a id="displayText.'
+T2 <- ' href="javascript:toggleText(\'toggleText.'
+T3 <- '\',\'displayText.'
+T4a<- '\');"><i><strong>'
+T4b<- '</strong></i></a> </h6><div id="toggleText.'
+T5 <- '" style="display: none">'
 
-HideExample <- function(arg1,arg2){
-  return("")
-}
-HideRCode <- function(arg1,arg2){
-  return("")
-}
-HideProofTheory <- function(arg1,arg2){
-  return("")
-}
-HideSolution <- function(arg1,arg2){
-  return("")
+HideText <- function(arg1,arg2){
+  return(paste(T1,arg1,'"',T2,arg1,T3,arg1,T4a,arg2,T4b,arg1,T5, sep=""))
 }
 
 ```
+
 
