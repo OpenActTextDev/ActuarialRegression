@@ -23,40 +23,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -125,344 +91,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<script>
-
-function markdownConverterEWF() {  
-
-//Create showdown markdown converter
-
-var converter = new showdown.Converter();
-
-converter.setOption('ghCompatibleHeaderId', true);
-
-survey
-
-    .onTextMarkdown
-
-    .add(function (survey, options) {
-
-        //convert the mardown text to html
-
-        var str = converter.makeHtml(options.text);
-
-        //remove root paragraphs <p></p>
-
-        str = str.substring(3);
-
-        str = str.substring(0, str.length - 4);
-
-        //set html
-
-        options.html = str;
-
-         MathJax.Hub.Queue(['Typeset',MathJax.Hub, 'options']);
-
-    });  
-
-};
-
-// Quiz Header info
-
-const jsonHeader = { 
-
-    showProgressBar: "bottom",
-
-    showTimerPanel: "none",
-
-    maxTimeToFinishPage: 10000,
-
-    maxTimeToFinish: 25000,
-
-    firstPageIsStarted: true,
-
-    startSurveyText: "Start Quiz" //,
-
-//    title: "Does This Make Sense?"
-
-}
-
-// One and Two question quizzes
-
-function jsonSummary1EWF(json) {  
-
-let jsonEnd1 = { 
-
-completedHtml: 
-
-json["pages"][1]["questions"][0]["name"]+ "<br>"+
-
-"<i>Question: </i>"+json["pages"][1]["questions"][0]["title"]+"<br>"+
-
-"<i>Answer: </i>"+json["pages"][1]["questions"][0]["correctAnswer"]
-
-};  
-
-return jsonEnd1;
-
-};
-
-
-
-
-
-function jsonSummary2EWF(json) {  
-
-let jsonEnd2 = { 
-
-completedHtml: 
-
-json["pages"][1]["questions"][0]["name"]+ "<br>"+
-
-"<i>Question: </i>"+json["pages"][1]["questions"][0]["title"]+"<br>"+
-
-"<i>Answer: </i>"+json["pages"][1]["questions"][0]["correctAnswer"]
-
-+"<br>"+
-
-json["pages"][2]["questions"][0]["name"]+ "<br>"+
-
-"<i>Question: </i>"+json["pages"][2]["questions"][0]["title"]+"<br>"+
-
-"<i>Answer: </i>"+json["pages"][2]["questions"][0]["correctAnswer"]
-
-};  
-
-return jsonEnd2;
-
-};
-
-
-
-// Three, four, and five question quizzes
-
-function jsonSummary3EWF(json) {  
-
-let jsonEnd3 = { 
-
-completedHtml: 
-
-json["pages"][1]["questions"][0]["name"]+ "<br>"+
-
-"<i>Question: </i>"+json["pages"][1]["questions"][0]["title"]+"<br>"+
-
-"<i>Answer: </i>"+json["pages"][1]["questions"][0]["correctAnswer"]
-
-+"<br>"+
-
-json["pages"][2]["questions"][0]["name"]+ "<br>"+
-
-"<i>Question: </i>"+json["pages"][2]["questions"][0]["title"]+"<br>"+
-
-"<i>Answer: </i>"+json["pages"][2]["questions"][0]["correctAnswer"]
-
-+"<br>"+
-
-json["pages"][3]["questions"][0]["name"]+ "<br>"+
-
-"<i>Question: </i>"+json["pages"][3]["questions"][0]["title"]+"<br>"+
-
-"<i>Answer: </i>"+json["pages"][3]["questions"][0]["correctAnswer"]
-
-};  
-
-return jsonEnd3;
-
-};
-
-
-
-function jsonSummary4EWF(json) {  
-
-jsonEnd4 = jsonSummary3EWF(json);
-
-jsonEnd4.completedHtml = jsonEnd4.completedHtml +  
-
-"<br>"+
-
-json["pages"][4]["questions"][0]["name"]+ "<br>"+
-
-"<i>Question: </i>"+json["pages"][4]["questions"][0]["title"]+"<br>"+
-
-"<i>Answer: </i>"+json["pages"][4]["questions"][0]["correctAnswer"]
-
-;  
-
-return jsonEnd4;
-
-};
-
-
-
-function jsonSummary5EWF(json) {  
-
-jsonEnd5 = jsonSummary4EWF(json);
-
-jsonEnd5.completedHtml = jsonEnd5.completedHtml +  
-
-"<br>"+
-
-json["pages"][5]["questions"][0]["name"]+ "<br>"+
-
-"<i>Question: </i>"+json["pages"][5]["questions"][0]["title"]+"<br>"+
-
-"<i>Answer: </i>"+json["pages"][5]["questions"][0]["correctAnswer"]
-
-;  
-
-return jsonEnd5;
-
-};
-
-
-
-function jsonSummary6EWF(json) {  
-
-jsonEnd6 = jsonSummary5EWF(json);
-
-jsonEnd6.completedHtml = jsonEnd6.completedHtml +  
-
-"<br>"+
-
-json["pages"][6]["questions"][0]["name"]+ "<br>"+
-
-"<i>Question: </i>"+json["pages"][6]["questions"][0]["title"]+"<br>"+
-
-"<i>Answer: </i>"+json["pages"][6]["questions"][0]["correctAnswer"]
-
-;  
-
-return jsonEnd6;
-
-};
-
-
-
-function jsonSummary7EWF(json) {  
-
-jsonEnd7 = jsonSummary6EWF(json);
-
-jsonEnd7.completedHtml = jsonEnd7.completedHtml +  
-
-"<br>"+
-
-json["pages"][7]["questions"][0]["name"]+ "<br>"+
-
-"<i>Question: </i>"+json["pages"][7]["questions"][0]["title"]+"<br>"+
-
-"<i>Answer: </i>"+json["pages"][7]["questions"][0]["correctAnswer"]
-
-;  
-
-return jsonEnd7;
-
-};
-
-
-
-function jsonSummary8EWF(json) {  
-
-jsonEnd8 = jsonSummary7EWF(json);
-
-jsonEnd8.completedHtml = jsonEnd8.completedHtml +  
-
-"<br>"+
-
-json["pages"][8]["questions"][0]["name"]+ "<br>"+
-
-"<i>Question: </i>"+json["pages"][8]["questions"][0]["title"]+"<br>"+
-
-"<i>Answer: </i>"+json["pages"][8]["questions"][0]["correctAnswer"]
-
-;  
-
-return jsonEnd8;
-
-};
-
-
-
-function jsonSummary9EWF(json) {  
-
-jsonEnd9 = jsonSummary8EWF(json);
-
-jsonEnd9.completedHtml = jsonEnd9.completedHtml +  
-
-"<br>"+
-
-json["pages"][9]["questions"][0]["name"]+ "<br>"+
-
-"<i>Question: </i>"+json["pages"][9]["questions"][0]["title"]+"<br>"+
-
-"<i>Answer: </i>"+json["pages"][9]["questions"][0]["correctAnswer"]
-
-;  
-
-return jsonEnd9;
-
-};
-
-
-
-
-
-function jsonSummary10EWF(json) {  
-
-jsonEnd10 = jsonSummary9EWF(json);
-
-jsonEnd10.completedHtml = jsonEnd10.completedHtml +  
-
-"<br>"+
-
-json["pages"][10]["questions"][0]["name"]+ "<br>"+
-
-"<i>Question: </i>"+json["pages"][10]["questions"][0]["title"]+"<br>"+
-
-"<i>Answer: </i>"+json["pages"][10]["questions"][0]["correctAnswer"]
-
-;  
-
-return jsonEnd10;
-
-};
-
-
-
-
-
-function jsonSummary11EWF(json) {  
-
-jsonEnd11 = jsonSummary10EWF(json);
-
-jsonEnd11.completedHtml = jsonEnd11.completedHtml +  
-
-"<br>"+
-
-json["pages"][11]["questions"][0]["name"]+ "<br>"+
-
-"<i>Question: </i>"+json["pages"][11]["questions"][0]["title"]+"<br>"+
-
-"<i>Answer: </i>"+json["pages"][11]["questions"][0]["correctAnswer"]
-
-;  
-
-return jsonEnd11;
-
-};
-
-
-
-
-
-
-
-</script>  
-
-<!-- This completes the code for the quizzes -->
-
-
-
-
-
 <!-- Various toggle functions used throughout --> 
 
 <script language="javascript">
@@ -506,6 +134,14 @@ function toggleQuiz(id1,id2) {
    if (ele.style.display == "block") {ele.style.display = "none"; text.innerHTML = "Show Quiz Solution";}
 
       else {ele.style.display = "block"; text.innerHTML = "Hide Quiz Solution";}}      
+
+function toggleText(id1,id2) {
+
+   var ele = document.getElementById(id1); var text = document.getElementById(id2);
+
+   if (ele.style.display == "block") {ele.style.display = "none"; text.innerHTML = "Show Text";}
+
+      else {ele.style.display = "block"; text.innerHTML = "Hide Text";}}   
 
 </script>
 
@@ -581,24 +217,6 @@ document.getElementById("defaultOpen").click();
 
 
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-125587869-1"></script>
-
-<script>
-
-  window.dataLayer = window.dataLayer || [];
-
-  function gtag(){dataLayer.push(arguments);}
-
-  gtag('js', new Date());
-
-
-
-  gtag('config', 'UA-125587869-1');
-
-</script>
-
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -633,17 +251,31 @@ document.getElementById("defaultOpen").click();
 
 
 <p><strong>Course Overview.</strong> This short course introduces statistical and machine learning with an emphasis on actuarial applications. Our approach stems from the fact that many modern machine learning tools can be interpreted through the lense of statistical principles, including classical regression techniques. Beginning with an overview of the statistical foundations, we show how to develop models based on “learning” from the data. We emphasize classical techniques widely used in actuarial applications such as those based on generalized linear models. This development of the foundation naturally leads to a modern approach towards statistical analysis known as statistical learning. For this approach, we describe techniques such as those based on boosting and tree-based methods, including random forests.</p>
+<h6 style="text-align: left;" class="anchored">
+<a id="displayText.Begin.Hide" href="javascript:toggleText('toggleText.Begin.Hide','displayText.Begin.Hide');"><i><strong>More on the Course Overview: Statistical and Machine Learning.</strong></i></a>
+</h6>
+<div id="toggleText.Begin.Hide" style="display: none">
 <p>In contrast to statistical learning, machine learning only uses algorithms that can learn from the data and do not employ an underpinning probabilistic framework. Due to their popularity and widespread use, we provide an overview with an emphasis on actuarial applications. Our main focus is on neural networks and the “deep learning” associated with many layers of a network. Without the need to develop reasoning based on probabilistic models, the machine learning community has developed approaches to handle a broad set of problems including those from computer vision, text recognition, and natural language processing; we demonstrate these applications in this course.</p>
 <p>This course will provide participants with a guided tour of the statistical and machine learning landscapes. Our goals are to:</p>
 <ol type="1">
 <li>give participants a deep understanding of what this set of tools can achieve in actuarial contexts, and</li>
 <li>provide a springboard for participants that will allow them to develop additional expertise using machine learning approaches.</li>
 </ol>
+<hr>
+</div>
+<p><br></p>
 <p><strong>Course Format.</strong> The format of the course will consist of alternating blocks between presentations of the underlying principles and practical applications. In a typical block, the instructor will spend 45 minutes reviewing the insurance motivation and key mathematical underpinnings. This will be followed by a 45 minute block of time in which participants will actively explore a selected case study. Thus, it is anticipated that participants will bring a laptop.</p>
+<h6 style="text-align: left;" class="anchored">
+<a id="displayText.Begin2.Hide" href="javascript:toggleText('toggleText.Begin2.Hide','displayText.Begin2.Hide');"><i><strong>More on the Course Format: Coding in R and Python.</strong></i></a>
+</h6>
+<div id="toggleText.Begin2.Hide" style="display: none">
 <p>For the foundations, the statistical learning component, and many of the case studies, we will utilize the statistical package ‘R’. This package is written by statisticians and its approach is tied directly to statistical applications. Participants with some familiarity with ‘R’ will benefit most from the course. For the machine learning components, we provide code from the general programming language ‘python’. We do not assume prior knowledge of python but will provide code so that participants can calibrate machine learning models using case studies. One of the benefits of the course is to expose participants to the power of python.</p>
+<hr>
+</div>
+<p><br></p>
 <p><strong>Target Audience</strong>: Practicing actuaries, students, and educators interested in exposure to the foundations of insurance analytics.</p>
-<section id="short-course-brief-outline" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Short Course Brief Outline</h1>
+<section id="short-course-brief-outline" class="level1 unnumbered">
+<h1 class="unnumbered">Short Course Brief Outline</h1>
 <ul>
 <li>Day 1 - Foundations and Statistical Learning</li>
 <li>Day 2 - Statistical and Machine Learning
@@ -655,10 +287,42 @@ document.getElementById("defaultOpen").click();
 <li>Lecture on AI applications in insurance context from Prof.&nbsp;Dani Bauer</li>
 </ul></li>
 </ul>
-<h5 style="text-align: center;" class="anchored" data-anchor-id="short-course-brief-outline">
-<a id="displayTheory.Section4122.Hide" href="javascript:toggleTheory('toggleTheory.Section4122.Hide','displayTheory.Section4122.Hide');"><i><strong>A More Detailed Plan</strong></i></a>
-</h5>
-<div id="toggleTheory.Section4122.Hide" style="display: none">
+</section>
+<section id="data" class="level1 unnumbered">
+<h1 class="unnumbered">Data</h1>
+<p>For this short course, you will find links to the data embedded in our notebooks (that you will retrieve on the fly). So, you will not need to download data in advance for this course.</p>
+<p>However, should you be interested in experimenting further, here are some helpful sources of data:</p>
+<ul>
+<li><a href="https://github.com/OpenActTextDev/ActuarialRegression/tree/main/CSVData">Short Course Repo</a> - this is the Github repository where we will store data for the short course.
+<ul>
+<li>This repo contains data from the <a href="https://openacttextdev.github.io/RegressionSpanish/index.html">Modelado de Regresión con Aplicaciones Actuariales y Financieras</a>. You may also download these datasets from the <a href="https://instruction.bus.wisc.edu/jfrees/jfreesbooks/Regression%20Modeling/BookWebDec2010/data.html">Frees Regression Book Data Site</a>. Here, you will also find additional documentation regarding variable definitions.</li>
+</ul></li>
+<li><a href="https://openacttexts.github.io/LDAVer2/DataResources.html#other-data-sources">Loss Data Analytics List of Other Data Resources</a> - in this open actuarial textbook, many interesting datasets are described, including the Kaggle competitions datasets.</li>
+<li><a href="https://instruction.bus.wisc.edu/jfrees/jfreesbooks/PredictiveModelingVol1/index.htm">Predictive Modeling in Actuarial Science</a> These are some other data sets, with R code, useful for regression applications.</li>
+</ul>
+</section>
+<section id="google-colaboratory-and-jupyter-notebooks" class="level1 unnumbered">
+<h1 class="unnumbered">Google Colaboratory and Jupyter Notebooks</h1>
+<p>To deliver this course, we will utilize two resources that will likely be unfamiliar to some participants.</p>
+<ul>
+<li><a href="https://colab.research.google.com/">Google colaboratory</a> (colab for short) is a cloud-based system of servers designed to process machine learning code.
+<ul>
+<li>We will use the free base package - you only need a (free) Google account.</li>
+<li>Colab handles both R and python code - perfect for our needs.</li>
+</ul></li>
+<li><a href="https://nbviewer.org/github/OpenActTextDev/ActuarialRegression/blob/main/Notebooks/Introduction%20to%20Jupyter%20Notebooks.ipynb">Jupyter notebooks</a> provide a handy way to combine executable code, code outputs, and text into one connected file.
+<ul>
+<li>You can take a look at the course notebooks by going to <a href="https://nbviewer.org/">nbviewer site</a>. Then, enter the course Github account URL <a href="https://github.com/OpenActTextDev/ActuarialRegression/tree/main/Notebooks">https://github.com/OpenActTextDev/ActuarialRegression</a> and select a notebook you want to view.</li>
+<li>To interact with notebook, go to colab!</li>
+</ul></li>
+</ul>
+</section>
+<section id="detailed-course-outline" class="level1 unnumbered">
+<h1 class="unnumbered">Detailed Course Outline</h1>
+<h6 style="text-align: left;" class="anchored" data-anchor-id="detailed-course-outline">
+<a id="displayText.Section4122.Hide" href="javascript:toggleText('toggleText.Section4122.Hide','displayText.Section4122.Hide');"><i><strong>A More Detailed Plan</strong></i></a>
+</h6>
+<div id="toggleText.Section4122.Hide" style="display: none">
 <ul>
 <li>Let us assume that each two hour block consists of 50 minutes of lecture, with 40 minutes interactive work and a 30 minute break.</li>
 <li>So, four blocks per day, with three days in total</li>
@@ -811,23 +475,10 @@ Afternoon</td>
 </ul>
 </div>
 </section>
-<section id="data" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Data</h1>
-<p>For this short course, you will find links to the data embedded in our notebooks (that you will retrieve on the fly). So, you will not need to download data in advance for this course.</p>
-<p>However, should you be interested in experimenting further, here are some helpful sources of data:</p>
-<ul>
-<li><a href="https://github.com/OpenActTextDev/ActuarialRegression/tree/main/CSVData">Short Course Repo</a> - this is the Github repository where we will store data for the short course.
-<ul>
-<li>This repo contains data from the <a href="https://openacttextdev.github.io/RegressionSpanish/index.html">Modelado de Regresión con Aplicaciones Actuariales y Financieras</a>. You may also download these datasets from the <a href="https://instruction.bus.wisc.edu/jfrees/jfreesbooks/Regression%20Modeling/BookWebDec2010/data.html">Frees Regression Book Data Site</a>. Here, you will also find additional documentation regarding variable definitions.</li>
-</ul></li>
-<li><a href="https://openacttexts.github.io/LDAVer2/DataResources.html#other-data-sources">Loss Data Analytics List of Other Data Resources</a> - in this open actuarial textbook, many interesting datasets are described, including the Kaggle competitions datasets.</li>
-<li><a href="https://instruction.bus.wisc.edu/jfrees/jfreesbooks/PredictiveModelingVol1/index.htm">Predictive Modeling in Actuarial Science</a> These are some other data sets, with R code, useful for regression applications.</li>
-</ul>
-</section>
-<section id="short-course-resources" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Short Course Resources</h1>
-<section id="other-actuarial-courses" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="other-actuarial-courses"><span class="header-section-number">3.1</span> Other actuarial courses</h2>
+<section id="short-course-resources" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Short Course Resources</h1>
+<section id="other-actuarial-courses" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="other-actuarial-courses"><span class="header-section-number">1.1</span> Other actuarial courses</h2>
 <ul>
 <li>Madison
 <ul>
@@ -862,8 +513,8 @@ Afternoon</td>
 </ul></li>
 </ul>
 </section>
-<section id="other-actuarial-resources" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="other-actuarial-resources"><span class="header-section-number">3.2</span> Other actuarial resources</h2>
+<section id="other-actuarial-resources" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="other-actuarial-resources"><span class="header-section-number">1.2</span> Other actuarial resources</h2>
 <ul>
 <li>UK
 <ul>
@@ -891,8 +542,8 @@ Afternoon</td>
 </ul></li>
 </ul>
 </section>
-<section id="thought-provoking-articles-and-commentaries" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="thought-provoking-articles-and-commentaries"><span class="header-section-number">3.3</span> Thought Provoking Articles and Commentaries</h2>
+<section id="thought-provoking-articles-and-commentaries" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="thought-provoking-articles-and-commentaries"><span class="header-section-number">1.3</span> Thought Provoking Articles and Commentaries</h2>
 <ul>
 <li><a href="https://www.annualreviews.org/content/journals/10.1146/annurev-statistics-040120-030244">Recent Challenges in Actuarial Science</a>, by Embrechts and Wütrich</li>
 <li><a href="https://actuary.eu/wp-content/uploads/2024/01/What-should-an-actuary-know-about-Artificial-Intelligence.pdf">What an actuary should know about artificial intelligence</a></li>
@@ -902,10 +553,10 @@ Afternoon</td>
 </ul></li>
 </ul>
 </section>
-<section id="other-courses-some-with-books" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="other-courses-some-with-books"><span class="header-section-number">3.4</span> Other Courses (Some with Books)</h2>
-<section id="statistical-learning" class="level3" data-number="3.4.1">
-<h3 data-number="3.4.1" class="anchored" data-anchor-id="statistical-learning"><span class="header-section-number">3.4.1</span> Statistical Learning</h3>
+<section id="other-courses-some-with-books" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="other-courses-some-with-books"><span class="header-section-number">1.4</span> Other Courses (Some with Books)</h2>
+<section id="statistical-learning" class="level3" data-number="1.4.1">
+<h3 data-number="1.4.1" class="anchored" data-anchor-id="statistical-learning"><span class="header-section-number">1.4.1</span> Statistical Learning</h3>
 <ul>
 <li><a href="https://www.statlearning.com/">James et al.&nbsp;(2021), An Introduction to Statistical Learning with Applications in R</a></li>
 <li><a href="https://www.statlearning.com/">James et al.&nbsp;(2023), An Introduction to Statistical Learning with Applications in Python</a>
@@ -915,8 +566,8 @@ Afternoon</td>
 </ul></li>
 </ul>
 </section>
-<section id="machine-learning-and-ai" class="level3" data-number="3.4.2">
-<h3 data-number="3.4.2" class="anchored" data-anchor-id="machine-learning-and-ai"><span class="header-section-number">3.4.2</span> Machine Learning and AI</h3>
+<section id="machine-learning-and-ai" class="level3" data-number="1.4.2">
+<h3 data-number="1.4.2" class="anchored" data-anchor-id="machine-learning-and-ai"><span class="header-section-number">1.4.2</span> Machine Learning and AI</h3>
 <ul>
 <li><a href="https://www.coursera.org/learn/machine-learning">Coursera - Machine Learning by Andrew Ng</a></li>
 <li><a href="https://atcold.github.io/NYU-DLSP21/">Lecun ML Course</a></li>
@@ -932,8 +583,8 @@ Afternoon</td>
 </ul>
 </section>
 </section>
-<section id="books" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="books"><span class="header-section-number">3.5</span> Books</h2>
+<section id="books" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="books"><span class="header-section-number">1.5</span> Books</h2>
 <ul>
 <li><a href="https://sourestdeeds.github.io/pdf/Deep%20Learning%20with%20Python.pdf">Chollet, F. (2021). Deep learning with Python. Simon and Schuster.</a>
 <ul>
@@ -957,8 +608,8 @@ Afternoon</td>
 </ul>
 </section>
 </section>
-<section id="learn-python" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Learn Python</h1>
+<section id="learn-python" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Learn Python</h1>
 <ul>
 <li><a href="https://automatetheboringstuff.com/">Automate the Boring Stuff with Python</a>
 <ul>
@@ -981,27 +632,6 @@ Afternoon</td>
 <li>Python using indentation rules for blocks of code! (How old fashion… Like cobol.) (The Python standard is 4 spaces.)</li>
 <li>You can use “1_000” for “1000”, the underscore improves readability….</li>
 </ul>
-</section>
-<section id="sandbox" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="sandbox">Sandbox</h2>
-<p><strong>Note</strong>: I am experimenting with Quarto, It enables you to weave together content and executable code into a finished document. To learn more about Quarto see <a href="https://quarto.org" class="uri">https://quarto.org</a>.</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>spam <span class="op">=</span> [[<span class="st">'cat'</span>, <span class="st">'bat'</span>], [<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>]]</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">enumerate</span>(spam)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>&lt;enumerate object at 0x0000029027E67A10&gt;</p>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(spam))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>2</p>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(spam[<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>[10, 20, 30, 40, 50]</p>
-</div>
-<p>I built this figure using <a href="https://alexlenail.me/NN-SVG/AlexNet.html" class="uri">https://alexlenail.me/NN-SVG/AlexNet.html</a>.</p>
-<div class="cell" data-layout-align="center" data-asp="0.2">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="FirstGraph.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:120.0%"></p>
-</figure>
-</div>
-</div>
 </section>
 </section>
 
