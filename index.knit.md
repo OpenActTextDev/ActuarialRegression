@@ -16,44 +16,23 @@ editor: source
 ---
 
 
-```{r include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, comment=NA, message = FALSE, warning = FALSE, fig.align="center", out.width='100%', fig.asp=0.60, results = 'asis')
-
-library(ggplot2)
-library(gridExtra)
-library(kableExtra)
-library(distill)
-library(dplyr)
-options(digits = 9)
-options(scipen = 9)
-TimeCheck      <- Sys.time()
-HtmlEval <- knitr:::is_html_output()
-PdfEval  <- knitr:::is_latex_output()
-
-# if (HtmlEval) { 
-  FigRed    = "red"        ;  FigBlue   = "blue"
-  FigGreen  = "green"      ;  FigLBlue  = "lightblue"
-  FigDBlue  = "darkblue"   ;  FigDGreen = "darkgreen"
-  FigLGreen = "lightgreen" ;  FigOrange = "orange"      
-  # } else { 
-  # FigRed    = "black"      ;  FigBlue   = "black"
-  # FigGreen  = "black"      ;  FigLBlue  = "gray"
-  # FigDBlue  = "black"      ;  FigDGreen = "gray"  
-  # FigLGreen = "gray"       ;  FigOrange = "black"        
-  # }
 
 
-```
 
 
-```{r echo = FALSE, child = 'HideShowCodeShortCourse.Rmd'}
-```
+::: {.cell layout-align="center"}
+
+:::
+
+
+
+
 
 
 **Course Overview.** This short course introduces statistical and machine learning with an emphasis on actuarial applications. Our approach stems from the fact that many modern machine learning tools can be interpreted through the lense of statistical principles, including classical regression techniques. Beginning with an overview of the statistical foundations, we show how to develop models based on "learning" from the data. We emphasize classical techniques widely used in actuarial applications such as those based on generalized linear models. This development of the foundation naturally leads to a modern approach towards statistical analysis known as statistical learning.
 For this approach, we describe techniques such as those based on boosting and tree-based methods, including random forests.
 
-`r HideText('Begin.Hide', 'More on the Course Overview: Statistical and Machine Learning.')`  In contrast to statistical learning, machine learning only uses algorithms that can learn from the data and do not employ an underpinning probabilistic framework. Due to their popularity and widespread use, we provide an overview with an emphasis on actuarial applications. Our main focus is on neural networks and the "deep learning" associated with many layers of a network. Without the need to develop reasoning based on probabilistic models, the machine learning community has developed approaches to handle a broad set of problems including those from computer vision, text recognition, and natural language processing; we demonstrate these applications in this course. 
+<h6 style="text-align: left;"><a id="displayText.Begin.Hide" href="javascript:toggleText('toggleText.Begin.Hide','displayText.Begin.Hide');"><i><strong>More on the Course Overview: Statistical and Machine Learning.</strong></i></a> </h6><div id="toggleText.Begin.Hide" style="display: none">  In contrast to statistical learning, machine learning only uses algorithms that can learn from the data and do not employ an underpinning probabilistic framework. Due to their popularity and widespread use, we provide an overview with an emphasis on actuarial applications. Our main focus is on neural networks and the "deep learning" associated with many layers of a network. Without the need to develop reasoning based on probabilistic models, the machine learning community has developed approaches to handle a broad set of problems including those from computer vision, text recognition, and natural language processing; we demonstrate these applications in this course. 
 
 This course will provide participants with a guided tour of the statistical and machine learning landscapes. Our goals are to: 
 
@@ -68,7 +47,7 @@ This course will provide participants with a guided tour of the statistical and 
 
 **Course Format.** The format of the course will consist of alternating blocks between presentations of the underlying principles and practical applications. In a typical block, the instructor will spend 45 minutes reviewing the insurance motivation and key mathematical underpinnings. This will be followed by a 45 minute block of time in which participants will actively explore a selected case study. Thus, it is anticipated that participants will bring a laptop.
 
-`r HideText('Begin2.Hide', 'More on the Course Format: Coding in R and Python.')` For the foundations, the statistical learning component, and many of the case studies, we will utilize the statistical package 'R'. This package is written by statisticians and its approach is tied directly to statistical applications. Participants with some familiarity with 'R' will benefit most from the course. For the machine learning components, we provide code from the general programming language 'python'. We do not assume prior knowledge of python but will provide code so that participants can calibrate machine learning models using case studies. One of the benefits of the course is to expose participants to the power of python.
+<h6 style="text-align: left;"><a id="displayText.Begin2.Hide" href="javascript:toggleText('toggleText.Begin2.Hide','displayText.Begin2.Hide');"><i><strong>More on the Course Format: Coding in R and Python.</strong></i></a> </h6><div id="toggleText.Begin2.Hide" style="display: none"> For the foundations, the statistical learning component, and many of the case studies, we will utilize the statistical package 'R'. This package is written by statisticians and its approach is tied directly to statistical applications. Participants with some familiarity with 'R' will benefit most from the course. For the machine learning components, we provide code from the general programming language 'python'. We do not assume prior knowledge of python but will provide code so that participants can calibrate machine learning models using case studies. One of the benefits of the course is to expose participants to the power of python.
 
 ***
 
@@ -88,68 +67,127 @@ This course will provide participants with a guided tour of the statistical and 
    
 
    
-`r HideText('Section4122.Hide', 'A More Detailed Plan')`   
+<h6 style="text-align: left;"><a id="displayText.Section4122.Hide" href="javascript:toggleText('toggleText.Section4122.Hide','displayText.Section4122.Hide');"><i><strong>A More Detailed Plan</strong></i></a> </h6><div id="toggleText.Section4122.Hide" style="display: none">   
 
 *  Let us assume that each two hour block consists of 50 minutes of lecture, with 40 minutes interactive work and a 30 minute break.
 *  So, four blocks per day, with three days in total
 
 
 
-```{r Table12, echo = FALSE}
 
-Topics1 <- c("Welcome and Foundations <br> Hello to Google Colab", 
-             "Logistic Regression and Generalized Linear Models",
-             "Regularization, Resampling, Cross-Validation")
-Topics2 <- c("Classification", "Trees, Boosting, Bagging",
-             "Big Data, Non-Supervised Learning, Dimension Reduction",
-            "Artificial Neural Networks", "Graphic Data Neural Networks",
-            "Ethics - Fei Huang")
-Topics3 <- c("Recurrent Neural Networks", "Artificial Intelligence and ChatGPT",
-             "Dani Bauer Insights", "Applications and Wrap-Up")
-Topics <- c(Topics1, Topics2, Topics3)
-Dayplace <- c("Monday <br> Morning", "", "Monday <br> Afternoon","",
-              "Tuesday <br> Morning", "", "Tuesday <br> Afternoon", "", "Tuesday <br> 4 pm",
-              "Wednesday <br> Morning", "", "Wednesday <br> After Lunch",  "Wednesday <br> Afternoon")
 
-Presenter <- c(rep("Jed",2), rep("Andrés", 3), rep("Jed",3), "Fei",
-               "Jed", "Jed", "Dani", "Andrés")
+::: {.cell layout-align="center"}
+`````{=html}
+<table class=" lightable-classic table table-striped table-condensed" style='font-family: "Arial Narrow", "Source Sans Pro", sans-serif; width: auto !important; margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;'>
+<caption><b>Detailed Schedule</b></caption>
+ <thead>
+  <tr>
+   <th style="text-align:center;font-weight: bold;"> Day and  <br> Time </th>
+   <th style="text-align:center;font-weight: bold;"> Presenter </th>
+   <th style="text-align:left;font-weight: bold;"> Topics </th>
+   <th style="text-align:center;font-weight: bold;"> Presenter - Data Source </th>
+   <th style="text-align:center;font-weight: bold;"> Participant Activity - Data Source </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;width: 1.0cm; "> Monday <br> Morning </td>
+   <td style="text-align:center;width: 1cm; "> Jed </td>
+   <td style="text-align:left;width: 8.5cm; "> Welcome and Foundations <br> Hello to Google Colab </td>
+   <td style="text-align:center;width: 8.5cm; "> <a href="https://www.kaggle.com/datasets/harlfoxem/housesalesprediction">Seattle House Prices</a><br>French Motor Liability Data </td>
+   <td style="text-align:center;width: 8.5cm; "> <a href="https://openacttextdev.github.io/RegressionSpanish/index.html">Health Expenditures</a> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 1.0cm; ">  </td>
+   <td style="text-align:center;width: 1cm; "> Jed </td>
+   <td style="text-align:left;width: 8.5cm; "> Logistic Regression and Generalized Linear Models </td>
+   <td style="text-align:center;width: 8.5cm; "> <a href="https://openacttextdev.github.io/RegressionSpanish/index.html">Health Expenditures</a><br>French Motor Liability Data </td>
+   <td style="text-align:center;width: 8.5cm; "> LogisticGLM.ipynb <br><a href="https://openacttextdev.github.io/RegressionSpanish/index.html">Health Expenditures</a> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 1.0cm; "> Monday <br> Afternoon </td>
+   <td style="text-align:center;width: 1cm; "> Andrés </td>
+   <td style="text-align:left;width: 8.5cm; "> Regularization, Resampling, Cross-Validation </td>
+   <td style="text-align:center;width: 8.5cm; "> <a href="https://www.kaggle.com/datasets/harlfoxem/housesalesprediction">Seattle House Prices</a> </td>
+   <td style="text-align:center;width: 8.5cm; "> <a href="https://www.kaggle.com/datasets/harlfoxem/housesalesprediction">Seattle House Prices</a> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 1.0cm; ">  </td>
+   <td style="text-align:center;width: 1cm; "> Andrés </td>
+   <td style="text-align:left;width: 8.5cm; "> Classification </td>
+   <td style="text-align:center;width: 8.5cm; "> <a href="https://discover.data.vic.gov.au/dataset/victoria-road-crash-data">Victoria road crash data</a> </td>
+   <td style="text-align:center;width: 8.5cm; "> <a href="https://discover.data.vic.gov.au/dataset/victoria-road-crash-data">Victoria road crash data</a> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 1.0cm; "> Tuesday <br> Morning </td>
+   <td style="text-align:center;width: 1cm; "> Andrés </td>
+   <td style="text-align:left;width: 8.5cm; "> Trees, Boosting, Bagging </td>
+   <td style="text-align:center;width: 8.5cm; ">  </td>
+   <td style="text-align:center;width: 8.5cm; ">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 1.0cm; ">  </td>
+   <td style="text-align:center;width: 1cm; "> Jed </td>
+   <td style="text-align:left;width: 8.5cm; "> Big Data, Non-Supervised Learning, Dimension Reduction </td>
+   <td style="text-align:center;width: 8.5cm; "> MNIST Data </td>
+   <td style="text-align:center;width: 8.5cm; "> MNIST Data </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 1.0cm; "> Tuesday <br> Afternoon </td>
+   <td style="text-align:center;width: 1cm; "> Jed </td>
+   <td style="text-align:left;width: 8.5cm; "> Artificial Neural Networks </td>
+   <td style="text-align:center;width: 8.5cm; "> <a href="https://www.kaggle.com/datasets/harlfoxem/housesalesprediction">Seattle House Prices</a><br>French Motor Liability Data </td>
+   <td style="text-align:center;width: 8.5cm; "> <a href="https://www.kaggle.com/datasets/harlfoxem/housesalesprediction">Seattle House Prices</a> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 1.0cm; ">  </td>
+   <td style="text-align:center;width: 1cm; "> Jed </td>
+   <td style="text-align:left;width: 8.5cm; "> Graphic Data Neural Networks </td>
+   <td style="text-align:center;width: 8.5cm; "> MNIST Data </td>
+   <td style="text-align:center;width: 8.5cm; "> MNIST Data </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 1.0cm; "> Tuesday <br> 4 pm </td>
+   <td style="text-align:center;width: 1cm; "> Fei </td>
+   <td style="text-align:left;width: 8.5cm; "> Ethics - Fei Huang </td>
+   <td style="text-align:center;width: 8.5cm; ">  </td>
+   <td style="text-align:center;width: 8.5cm; "> None </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 1.0cm; "> Wednesday <br> Morning </td>
+   <td style="text-align:center;width: 1cm; "> Jed </td>
+   <td style="text-align:left;width: 8.5cm; "> Recurrent Neural Networks </td>
+   <td style="text-align:center;width: 8.5cm; ">  </td>
+   <td style="text-align:center;width: 8.5cm; ">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 1.0cm; ">  </td>
+   <td style="text-align:center;width: 1cm; "> Jed </td>
+   <td style="text-align:left;width: 8.5cm; "> Artificial Intelligence and ChatGPT </td>
+   <td style="text-align:center;width: 8.5cm; ">  </td>
+   <td style="text-align:center;width: 8.5cm; "> None </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 1.0cm; "> Wednesday <br> After Lunch </td>
+   <td style="text-align:center;width: 1cm; "> Dani </td>
+   <td style="text-align:left;width: 8.5cm; "> Dani Bauer Insights </td>
+   <td style="text-align:center;width: 8.5cm; ">  </td>
+   <td style="text-align:center;width: 8.5cm; "> None </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 1.0cm; "> Wednesday <br> Afternoon </td>
+   <td style="text-align:center;width: 1cm; "> Andrés </td>
+   <td style="text-align:left;width: 8.5cm; "> Applications and Wrap-Up </td>
+   <td style="text-align:center;width: 8.5cm; ">  </td>
+   <td style="text-align:center;width: 8.5cm; ">  </td>
+  </tr>
+</tbody>
+</table>
 
-DataSetsPresenter <- c(
-  '<a href="https://www.kaggle.com/datasets/harlfoxem/housesalesprediction">Seattle House Prices</a><br>French Motor Liability Data', 
-  '<a href="https://openacttextdev.github.io/RegressionSpanish/index.html">Health Expenditures</a><br>French Motor Liability Data',
-  '<a href="https://www.kaggle.com/datasets/harlfoxem/housesalesprediction">Seattle House Prices</a>',
-  '<a href="https://discover.data.vic.gov.au/dataset/victoria-road-crash-data">Victoria road crash data</a>',
-  "","MNIST Data", 
-  '<a href="https://www.kaggle.com/datasets/harlfoxem/housesalesprediction">Seattle House Prices</a><br>French Motor Liability Data', 
-  "MNIST Data", "",
-  rep("", 2), "", "")
+`````
+:::
 
-DataSetsStudent <- c(
-  '<a href="https://openacttextdev.github.io/RegressionSpanish/index.html">Health Expenditures</a>', 
-  'LogisticGLM.ipynb <br><a href="https://openacttextdev.github.io/RegressionSpanish/index.html">Health Expenditures</a>',
-  '<a href="https://www.kaggle.com/datasets/harlfoxem/housesalesprediction">Seattle House Prices</a>',
-  '<a href="https://discover.data.vic.gov.au/dataset/victoria-road-crash-data">Victoria road crash data</a>',
-  "","MNIST Data", 
-  '<a href="https://www.kaggle.com/datasets/harlfoxem/housesalesprediction">Seattle House Prices</a>', 
-  "MNIST Data", "None",
-  "","None", "None", "")
 
-Table1 <- cbind(Dayplace, Presenter, Topics, DataSetsPresenter, DataSetsStudent)
-colnames(Table1) <- c("Day and  <br> Time", "Presenter", "Topics", "Presenter - Data Source",
-                      "Participant Activity - Data Source")
-
-kableExtra::kbl(Table1, caption = '<b>Detailed Schedule</b>', 
-                    booktabs = TRUE, escape = FALSE, align = 'cclcc') %>%
-  kableExtra::kable_classic(full_width = FALSE) %>%
-  column_spec(1,  width = "1.0cm") %>%
-  column_spec(2,  width = "1cm")  %>%
-  column_spec(3,  width = "8.5cm") %>%
-  column_spec(4,  width = "8.5cm") %>%
-  column_spec(5,  width = "8.5cm") %>%
-  row_spec(0,  bold = TRUE, italic = FALSE) %>%      
-  kableExtra::kable_styling(bootstrap_options = c("striped", "condensed"))
-
-```
 
 <br>
 
@@ -303,6 +341,7 @@ Our hope is that the course will inspire some attendees to continue learning abo
 -   There are methods (functions) associated with data types. Each data type has its own set of methods.
 -   Python using indentation rules for blocks of code! (How old fashion... Like cobol.) (The Python standard is 4 spaces.)
 -   You can use "1_000" for "1000", the underscore improves readability....
+
 
 
 
