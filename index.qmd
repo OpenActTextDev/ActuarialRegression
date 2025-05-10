@@ -193,6 +193,8 @@ However, should you be interested in experimenting further, here are some helpfu
 
 # Short Course Resources
 
+Listed here are *many* freely available resources to learn about machine learning. You will *not* need these resources for the short course. Our hope is that the course will inspire some attendees to continue learning about machine learning approaches after the course. If you wish to continue your learning journey, these resources may be useful to you.
+
 ## Other actuarial courses
 
 -   Madison
@@ -284,7 +286,7 @@ However, should you be interested in experimenting further, here are some helpfu
  
 In this course, we will **not** assume knowledge of Python although we will assume that participants have some familiarity with R. Through exposure to the Python scripts, we simply want to demonstrate how machine learning tools can be utilized.
 
-Our hope is that the course will inspire some attendees to continue learning about machine learning approaches after the course. You will find that the Python machine learning community to be much larger than the corresponding R users community. If you decide to continue on a machine learning journey, you probably will want to get additional exposure to Python. Here are a few selected resources:
+The Python machine learning community is much larger than the corresponding R-users community. If you decide to continue on a machine learning journey, you probably will want to get additional exposure to Python. Here are a few selected resources:
 
 -   [Automate the Boring Stuff with Python](https://automatetheboringstuff.com/)
     -  [Beyond the Basic Stuff with Python](https://inventwithpython.com/beyond/) - Some great explanations
