@@ -90,62 +90,41 @@ This course will provide participants with a guided tour of the statistical and 
    
 `r HideText('Section4122.Hide', 'A More Detailed Plan')`   
 
-*  Let us assume that each two hour block consists of 50 minutes of lecture, with 40 minutes interactive work and a 30 minute break.
+*  Each two hour block consists of 50 minutes of lecture, with 40 minutes interactive work and a 30 minute break.
 *  So, four blocks per day, with three days in total
-
 
 
 ```{r Table12, echo = FALSE}
 
 Topics1 <- c("Welcome and Foundations <br> Hello to Google Colab", 
-             "Logistic Regression and Generalized Linear Models",
-             "Regularization, Resampling, Cross-Validation")
-Topics2 <- c("Classification", "Trees, Boosting, Bagging",
-             "Big Data, Dimension Reduction and Non-Supervised Learning",
-            "Artificial Neural Networks", "Graphic Data Neural Networks",
-            "Ethics - Fei Huang")
-Topics3 <- c("Recurrent Neural Networks", "Artificial Intelligence, Natural Language Processing, and ChatGPT",
+             "Classical Regression Modeling",
+             "Regularization, Resampling, Cross-Validation", "Classification")
+Topics2 <- c("Trees, Boosting, Bagging", "Big Data, Dimension Reduction and Non-Supervised Learning",
+            "Neural Networks", "Graphic Data Neural Networks",
+            "Fei Huang Thoughts on Ethics")
+Topics3 <- c("Recurrent Neural Networks, Word Embedding", "Artificial Intelligence, Natural Language Processing, and ChatGPT",
              "Dani Bauer Insights", "Applications and Wrap-Up")
 Topics <- c(Topics1, Topics2, Topics3)
-Dayplace <- c("Monday <br> Morning", "", "Monday <br> Afternoon","",
-              "Tuesday <br> Morning", "", "Tuesday <br> Afternoon", "", "Tuesday <br> 4 pm",
-              "Wednesday <br> Morning", "", "Wednesday <br> After Lunch",  "Wednesday <br> Afternoon")
-
+Dayplace <- c("Monday Morning", "", "Monday Afternoon","",
+              "Tuesday Morning", "", "Tuesday Afternoon", "", "Tuesday 4 pm",
+              "Wednesday Morning", "", "Wednesday After Lunch",  "Wednesday Afternoon")
+  #c(1, rep("",3), 2, rep("",4), 3, rep("", 3))
 Presenter <- c(rep("Jed",2), rep("Andrés", 3), rep("Jed",3), "Fei",
                "Jed", "Jed", "Dani", "Andrés")
-
-DataSetsPresenter <- c(
-  '<a href="https://www.kaggle.com/datasets/harlfoxem/housesalesprediction">Seattle House Prices</a><br>French Motor Liability Data', 
-  '<a href="https://openacttextdev.github.io/RegressionSpanish/index.html">Health Expenditures</a><br>French Motor Liability Data',
-  '<a href="https://www.kaggle.com/datasets/harlfoxem/housesalesprediction">Seattle House Prices</a>',
+DataSets <- c("LogisticGLM.ipynb", 
+  '<br><a href="https://openacttextdev.github.io/RegressionSpanish/index.html">Health Expenditures</a>',
+  '<a href="https://www.kaggle.com/datasets/harlfoxem/housesalesprediction">Seattle House Sales</a>',
   '<a href="https://discover.data.vic.gov.au/dataset/victoria-road-crash-data">Victoria road crash data</a>',
-  "","MNIST Data", 
-  '<a href="https://www.kaggle.com/datasets/harlfoxem/housesalesprediction">Seattle House Prices</a><br>French Motor Liability Data', 
-  "MNIST Data", "",
-  rep("", 2), "", "")
-
-DataSetsStudent <- c(
-  '<a href="https://openacttextdev.github.io/RegressionSpanish/index.html">Health Expenditures</a>', 
-  'LogisticGLM.ipynb <br><a href="https://openacttextdev.github.io/RegressionSpanish/index.html">Health Expenditures</a>',
-  '<a href="https://www.kaggle.com/datasets/harlfoxem/housesalesprediction">Seattle House Prices</a>',
-  '<a href="https://discover.data.vic.gov.au/dataset/victoria-road-crash-data">Victoria road crash data</a>',
-  "","MNIST Data", 
-  '<a href="https://www.kaggle.com/datasets/harlfoxem/housesalesprediction">Seattle House Prices</a>', 
-  "MNIST Data", "None",
-  "","None", "None", "")
-
-Table1 <- cbind(Dayplace, Presenter, Topics, DataSetsPresenter, DataSetsStudent)
-colnames(Table1) <- c("Day and  <br> Time", "Presenter", "Topics", "Presenter - Data Source",
-                      "Participant Activity - Data Source")
+  rep("", 9))
+Table1 <- cbind(Dayplace, Presenter, Topics, DataSets)
+colnames(Table1) <- c("Day and Time", "Presenter", "Topics", "Notebooks for Participant Activity")
 
 kableExtra::kbl(Table1, caption = '<b>Detailed Schedule</b>', 
-                    booktabs = TRUE, escape = FALSE, align = 'cclcc') %>%
-  kableExtra::kable_classic(full_width = FALSE) %>%
-  column_spec(1,  width = "1.0cm") %>%
-  column_spec(2,  width = "1cm")  %>%
-  column_spec(3,  width = "8.5cm") %>%
-  column_spec(4,  width = "8.5cm") %>%
-  column_spec(5,  width = "8.5cm") %>%
+                     booktabs = T, escape = FALSE, align = 'ccl') %>%
+  kableExtra::kable_classic(full_width = FALSE) %>% 
+  column_spec(1,  width = "3.5cm") %>%
+  column_spec(3,  width = "6.5cm") %>%
+  column_spec(4,  width = "6.5cm") %>%  
   row_spec(0,  bold = TRUE, italic = FALSE) %>%      
   kableExtra::kable_styling(bootstrap_options = c("striped", "condensed"))
 
