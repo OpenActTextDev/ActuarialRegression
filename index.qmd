@@ -111,8 +111,8 @@ Dayplace <- c("Monday Morning", "", "Monday Afternoon","",
   #c(1, rep("",3), 2, rep("",4), 3, rep("", 3))
 Presenter <- c(rep("Jed",2), rep("Andrés", 3), rep("Jed",3), "Fei",
                "Jed", "Jed", "Dani", "Andrés")
-DataSets <- c("LogisticGLM.ipynb", 
-  '<br><a href="https://openacttextdev.github.io/RegressionSpanish/index.html">Health Expenditures</a>',
+DataSets <- c('<a href="https://nbviewer.org/github/OpenActTextDev/ActuarialRegression/blob/main/Notebooks/AutoLiabilityClaims.ipynb">Auto Liability Claims</a>', 
+  '<a href="https://nbviewer.org/github/OpenActTextDev/ActuarialRegression/blob/main/Notebooks/MEPS.ipynb">Medical Expenditures (MEPS)</a>',
   '<a href="https://www.kaggle.com/datasets/harlfoxem/housesalesprediction">Seattle House Sales</a>',
   '<a href="https://discover.data.vic.gov.au/dataset/victoria-road-crash-data">Victoria road crash data</a>',
   rep("", 9))
