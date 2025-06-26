@@ -96,10 +96,11 @@ This course will provide participants with a guided tour of the statistical and 
 
 ```{r Table12, echo = FALSE}
 
-Topics1 <- c("Welcome and Foundations <br> Hello to Google Colab", 
-             "Classical Regression Modeling",
+Topics1 <- c('<a href="https://github.com/OpenActTextDev/ActuarialRegression/blob/main/Presentations/ColombiaSession1A_25June.pdf">Welcome and Foundations <br> Hello to Google Colab</a>', 
+             '<a href="https://github.com/OpenActTextDev/ActuarialRegression/blob/main/Presentations/ColombiaSession1B_25June.pdf">Classical Regression Modeling</a>',
              "Regularization, Resampling, Cross-Validation", "Classification")
-Topics2 <- c("Trees, Boosting, Bagging", "Big Data, Dimension Reduction and Non-Supervised Learning",
+Topics2 <- c("Trees, Boosting, Bagging", 
+             '<a href="https://github.com/OpenActTextDev/ActuarialRegression/blob/main/Presentations/ColombiaSession3B_25June.pdf">Big Data, Dimension Reduction and Non-Supervised Learning</a>',
             "Neural Networks", "Graphic Data Neural Networks",
             "Fei Huang Thoughts on Ethics")
 Topics3 <- c("Recurrent Neural Networks, Word Embedding", "Artificial Intelligence, Natural Language Processing, and ChatGPT",
