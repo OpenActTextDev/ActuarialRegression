@@ -96,14 +96,16 @@ This course will provide participants with a guided tour of the statistical and 
 
 ```{r Table12, echo = FALSE}
 
-Topics1 <- c('<a href="https://github.com/OpenActTextDev/ActuarialRegression/blob/main/Presentations/ColombiaSession1A_25June.pdf">Welcome and Foundations <br> Hello to Google Colab</a>', 
-             '<a href="https://github.com/OpenActTextDev/ActuarialRegression/blob/main/Presentations/ColombiaSession1B_25June.pdf">Classical Regression Modeling</a>',
+Topics1 <- c('<a href="https://github.com/OpenActTextDev/ActuarialRegression/blob/main/Presentations/ColombiaSession1A_30June.pdf">Welcome and Foundations <br> Hello to Google Colab</a>', 
+             '<a href="https://github.com/OpenActTextDev/ActuarialRegression/blob/main/Presentations/ColombiaSession1B_30June.pdf">Classical Regression Modeling</a>',
              "Regularization, Resampling, Cross-Validation", "Classification")
 Topics2 <- c("Trees, Boosting, Bagging", 
-             '<a href="https://github.com/OpenActTextDev/ActuarialRegression/blob/main/Presentations/ColombiaSession3B_25June.pdf">Big Data, Dimension Reduction and Non-Supervised Learning</a>',
-            "Neural Networks", "Graphic Data Neural Networks",
+             '<a href="https://github.com/OpenActTextDev/ActuarialRegression/blob/main/Presentations/ColombiaSession3B_30June.pdf">Big Data, Dimension Reduction and Non-Supervised Learning</a>',
+            '<a href="https://github.com/OpenActTextDev/ActuarialRegression/blob/main/Presentations/ColombiaSession4A_30June.pdf">Neural Networks</a>', 
+            '<a href="https://github.com/OpenActTextDev/ActuarialRegression/blob/main/Presentations/ColombiaSession4B_30June.pdf">Graphic Data Neural Networks</a>',
             "Fei Huang Thoughts on Ethics")
-Topics3 <- c("Recurrent Neural Networks, Word Embedding", "Artificial Intelligence, Natural Language Processing, and ChatGPT",
+Topics3 <- c('<a href="https://github.com/OpenActTextDev/ActuarialRegression/blob/main/Presentations/ColombiaSession5A_30June.pdf">Recurrent Neural Networks, Word Embedding</a>', 
+             '<a href="https://github.com/OpenActTextDev/ActuarialRegression/blob/main/Presentations/ColombiaSession5B_27June.pdf">Artificial Intelligence, Natural Language Processing, and ChatGPT</a>',
              "Dani Bauer Insights", "Applications and Wrap-Up")
 Topics <- c(Topics1, Topics2, Topics3)
 Dayplace <- c("Monday Morning", "", "Monday Afternoon","",
@@ -121,9 +123,14 @@ DataSets <- c('<a href="https://nbviewer.org/github/OpenActTextDev/ActuarialRegr
 '<a href="https://nbviewer.org/github/OpenActTextDev/ActuarialRegression/blob/main/Notebooks/MNIST.ipynb">MNIST Digits Data</a>', "",
 '<a href="https://nbviewer.org/github/OpenActTextDev/ActuarialRegression/blob/main/Notebooks/StockReturns.ipynb">Insurance Stock Returns</a>',
   rep("", 3))
-Table1 <- cbind(Dayplace, Presenter, Topics, DataSets)
-colnames(Table1) <- c("Day and Time", "Presenter", "Topics", "Notebooks for Participant Activity")
+Footer_row <- c("", "",
+  "*Click on a Topic to take you to a pdf of the slides.","*Click on a Notebook to take you to an html of the notebook (provided by NB viewer).")
+TableA <- cbind(Dayplace, Presenter, Topics, DataSets)
+Table1 <- rbind(TableA, Footer_row)
+row.names(Table1)  <- NULL
+colnames(Table1) <- c("Day and Time", "Presenter", "Topics*", "Notebooks* for Participant Activity")
 
+library(kableExtra)
 kableExtra::kbl(Table1, caption = '<b>Detailed Schedule</b>', 
                      booktabs = T, escape = FALSE, align = 'ccl') %>%
   kableExtra::kable_classic(full_width = FALSE) %>% 
@@ -131,6 +138,7 @@ kableExtra::kbl(Table1, caption = '<b>Detailed Schedule</b>',
   column_spec(3,  width = "6.5cm") %>%
   column_spec(4,  width = "6.5cm") %>%  
   row_spec(0,  bold = TRUE, italic = FALSE) %>%      
+  row_spec(14, font_size = 12) %>%      
   kableExtra::kable_styling(bootstrap_options = c("striped", "condensed"))
 
 ```
@@ -141,6 +149,19 @@ kableExtra::kbl(Table1, caption = '<b>Detailed Schedule</b>',
    
 </div>
 
+# Presenters {-}
+
+
+*  [Edward (Jed) Frees](https://sites.google.com/a/wisc.edu/jed-frees/home)
+*  [Andrés Villegas Ramirez](https://www.unsw.edu.au/staff/andres-villegas-ramirez)
+
+
+**Plus** - Special Guest Lecturers
+
+*  [Fei Huang](https://www.unsw.edu.au/staff/fei-huang)
+*  [Dani Bauer](https://business.wisc.edu/directory/profile/daniel-bauer/)
+
+You can click on the links to learn more about our backgrounds.
 
 # Google Colaboratory and Jupyter Notebooks {-}
 
