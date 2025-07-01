@@ -16,6 +16,8 @@ editor: source
 ---
 
 
+[*I Curso Verano Asociación Colombiana de Actuarios  2025*](https://actuarios.org.co/first-summer-camp-aca/)
+
 ```{r include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, comment=NA, message = FALSE, warning = FALSE, fig.align="center", out.width='100%', fig.asp=0.60, results = 'asis')
 
