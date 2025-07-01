@@ -104,7 +104,7 @@ Topics2 <- c("Trees, Boosting, Bagging",
             '<a href="https://github.com/OpenActTextDev/ActuarialRegression/blob/main/Presentations/ColombiaSession4A_30June.pdf">Neural Networks</a>', 
             '<a href="https://github.com/OpenActTextDev/ActuarialRegression/blob/main/Presentations/ColombiaSession4B_30June.pdf">Graphic Data Neural Networks</a>',
             "Fei Huang Thoughts on Ethics")
-Topics3 <- c('<a href="https://github.com/OpenActTextDev/ActuarialRegression/blob/main/Presentations/ColombiaSession5A_30June.pdf">Recurrent Neural Networks, Word Embedding</a>', 
+Topics3 <- c('<a href="https://github.com/OpenActTextDev/ActuarialRegression/blob/main/Presentations/ColombiaSession5A_01July.pdf">Recurrent Neural Networks, Word Embedding</a>', 
              '<a href="https://github.com/OpenActTextDev/ActuarialRegression/blob/main/Presentations/ColombiaSession5B_01July.pdf">Artificial Intelligence, Natural Language Processing, and ChatGPT</a>',
              "Dani Bauer Insights", "Applications and Wrap-Up")
 Topics <- c(Topics1, Topics2, Topics3)
