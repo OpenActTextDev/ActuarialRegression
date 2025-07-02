@@ -68,7 +68,7 @@ This course will provide participants with a guided tour of the statistical and 
 
 <br>
 
-**Course Format.** The format of the course will consist of alternating blocks between presentations of the underlying principles and practical applications. In a typical block, the instructor will spend 45 minutes reviewing the insurance motivation and key mathematical underpinnings. This will be followed by a 45 minute block of time in which participants will actively explore a selected case study. Thus, it is anticipated that participants will bring a laptop.
+**Course Format.** The format of the course will consist of alternating blocks between presentations of the underlying principles and practical applications. In a typical block, the instructor will spend 50 minutes reviewing the insurance motivation and key mathematical underpinnings. This will be followed by a 40 minute block of time in which participants will actively explore a selected case study. Thus, it is anticipated that participants will bring a laptop.
 
 `r HideText('Begin2.Hide', 'More on the Course Format: Coding in R and Python.')` For the foundations, the statistical learning component, and many of the case studies, we will utilize the statistical package 'R'. This package is written by statisticians and its approach is tied directly to statistical applications. Participants with some familiarity with 'R' will benefit most from the course. For the machine learning components, we provide code from the general programming language 'python'. We do not assume prior knowledge of python but will provide code so that participants can calibrate machine learning models using case studies. One of the benefits of the course is to expose participants to the power of python.
 
