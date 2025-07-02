@@ -121,9 +121,9 @@ DataSets <- c('<a href="https://nbviewer.org/github/OpenActTextDev/ActuarialRegr
   '<a href="https://www.kaggle.com/datasets/harlfoxem/housesalesprediction">Seattle House Sales</a>',
   '<a href="https://discover.data.vic.gov.au/dataset/victoria-road-crash-data">Victoria road crash data</a>', "",
   '<a href="https://nbviewer.org/github/OpenActTextDev/ActuarialRegression/blob/main/Notebooks/BigDataDimReduction.ipynb">Big Data, Dimension Reduction, and Non-Supervised Learning</a>',
-'<a href="https://nbviewer.org/github/OpenActTextDev/ActuarialRegression/blob/main/Notebooks/HousePriceRegression.ipynb">Seattle House Prices</a><br><a href="https://nbviewer.org/github/OpenActTextDev/ActuarialRegression/blob/main/Notebooks/ClaimCounts.ipynb">Claim Counts</a>', 
+'<a href="https://nbviewer.org/github/OpenActTextDev/ActuarialRegression/blob/main/Notebooks/HousePriceRegression.ipynb">Seattle House Prices</a><br><a href="https://github.com/OpenActTextDev/ActuarialRegression/blob/main/Notebooks/ClaimCounts.ipynb">Claim Counts</a>', 
 '<a href="https://nbviewer.org/github/OpenActTextDev/ActuarialRegression/blob/main/Notebooks/MNIST.ipynb">MNIST Digits Data</a>', "",
-'<a href="https://nbviewer.org/github/OpenActTextDev/ActuarialRegression/blob/main/Notebooks/StockReturns.ipynb">Insurance Stock Returns</a>',
+'<a href="https://nbviewer.org/github/OpenActTextDev/ActuarialRegression/blob/main/Notebooks/InsurerStockReturns.ipynb">Insurance Stock Returns</a>',
   rep("", 3))
 Footer_row <- c("", "",
   "*Click on a Topic to take you to a pdf of the slides.","*Click on a Notebook to take you to an html of the notebook (provided by NB viewer).")
@@ -186,7 +186,7 @@ For this short course, you will find links to the data embedded in our notebooks
 
 However, should you be interested in experimenting further, here are some helpful sources of data:
 
--   [Short Course Repo](https://github.com/OpenActTextDev/ActuarialRegression/tree/main/CSVData) - this is the Github repository where we will store data for the short course.
+-   [Short Course Repo](https://github.com/OpenActTextDev/ActuarialRegression/) - this is the Github repository where we will store data for the short course.
     -   This repo contains data from the [Modelado de Regresión con Aplicaciones Actuariales y Financieras](https://openacttextdev.github.io/RegressionSpanish/index.html). You may also download these datasets from the [Frees Regression Book Data Site](https://instruction.bus.wisc.edu/jfrees/jfreesbooks/Regression%20Modeling/BookWebDec2010/data.html). Here, you will also find additional documentation regarding variable definitions.
 -   [Loss Data Analytics List of Other Data Resources](https://openacttexts.github.io/LDAVer2/DataResources.html#other-data-sources) - in this open actuarial textbook, many interesting datasets are described, including the Kaggle competitions datasets.
 -   [Predictive Modeling in Actuarial Science](https://instruction.bus.wisc.edu/jfrees/jfreesbooks/PredictiveModelingVol1/index.htm) These are some other data sets, with R code, useful for regression applications.
@@ -203,7 +203,7 @@ Nonetheless, we have listed here *many* freely available resources to learn abou
 
 `r HideText('Reading.Hide', 'More Reading Resources')`   
 
-## Other actuarial courses
+# Actuarial courses
 
 -   Madison
     -   [Frees Bogotá Foundations Short Course](https://openacttextdev.github.io/RegressionSpanish/ShortCourseOrganization.html)
@@ -225,7 +225,7 @@ Nonetheless, we have listed here *many* freely available resources to learn abou
         -  [Free Github Code for Géron](https://github.com/ageron/handson-ml3)
  
 
-## Other actuarial resources
+# Other actuarial resources
 
 -  UK
    -   [IFoA: Actuaries Analytical Cookbook](https://actuariesinstitute.github.io/cookbook/docs/index.html)
@@ -249,16 +249,16 @@ Nonetheless, we have listed here *many* freely available resources to learn abou
 -   [Wolfram Overview of ML](https://www.wolfram.com/language/introduction-machine-learning/)
     -   [What Is ChatGPT Doing - and Why Does It Work?](https://writings.stephenwolfram.com/2023/02/what-is-chatgpt-doing-and-why-does-it-work/) 
 
-## Other Courses (Some with Books)
+# Other Courses (Some with Books)
 
-### Statistical Learning
+### Statistical Learning {-}
 
 -   [James et al. (2021), An Introduction to Statistical Learning with Applications in R](https://www.statlearning.com/)
 -   [James et al. (2023), An Introduction to Statistical Learning with Applications in Python](https://www.statlearning.com/)
     -   [Stanford Statistical Learning](https://www.edx.org/learn/python/stanford-university-statistical-learning-with-python)
     -   [YouTube](https://www.youtube.com/watch?v=yLEx1FnYyOo&list=PLoROMvodv4rNHU1-iPeDRH-J0cL-CrIda&index=11)
 
-### Machine Learning and AI
+### Machine Learning and AI {-}
 
 
 -   [Coursera - Machine Learning by Andrew Ng](https://www.coursera.org/learn/machine-learning)
@@ -270,7 +270,7 @@ Nonetheless, we have listed here *many* freely available resources to learn abou
 -   [Fast AI](https://course.fast.ai/)
 
 
-## Books
+## Books {-}
 
 -   [ Chollet, F. (2021). Deep learning with Python. Simon and Schuster.](https://sourestdeeds.github.io/pdf/Deep%20Learning%20with%20Python.pdf)
     -  [Python Github Repo](https://github.com/fchollet/deep-learning-with-python-notebooks)
@@ -299,9 +299,7 @@ The Python machine learning community is much larger than the corresponding R-us
 
 -   [Automate the Boring Stuff with Python](https://automatetheboringstuff.com/)
     -  [Beyond the Basic Stuff with Python](https://inventwithpython.com/beyond/) - Some great explanations
--   [UNSW: Artificial Intelligence and Deep Learning Models for Actuarial Applications](https://laub.au/DeepLearningForActuaries/)
--   [Numpy](https://numpy.org/doc/stable/user/absolute_beginners.html)
--   [IFoA: Actuaries Analytical Cookbook](https://actuariesinstitute.github.io/cookbook/docs/index.html)
+
 
 <br>
 
