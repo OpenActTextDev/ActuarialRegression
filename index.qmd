@@ -103,11 +103,11 @@ Topics1 <- c('<a href="https://github.com/OpenActTextDev/ActuarialRegression/blo
              '<a href="https://github.com/OpenActTextDev/ActuarialRegression/blob/main/Presentations/ColombiaSession2A_10July.pdf">Resampling, Cross-validation and Regularisation</a>', '<a href="https://github.com/OpenActTextDev/ActuarialRegression/blob/main/Presentations/ColombiaSession2B_10July.pdf">Classification, Logistic Regression and Trees</a>')
 Topics2 <- c('<a href="https://github.com/OpenActTextDev/ActuarialRegression/blob/main/Presentations/ColombiaSession3A_10July.pdf">Tree-based Ensemble methods and Interpretability</a>', 
              '<a href="https://github.com/OpenActTextDev/ActuarialRegression/blob/main/Presentations/ColombiaSession3B_30June.pdf">Big Data, Dimension Reduction and Non-Supervised Learning</a>',
-            '<a href="https://github.com/OpenActTextDev/ActuarialRegression/blob/main/Presentations/ColombiaSession4A_30June.pdf">Neural Networks</a>', 
+            '<a href="https://github.com/OpenActTextDev/ActuarialRegression/blob/main/Presentations/ColombiaSession4A_09July.pdf">Neural Networks</a>', 
             '<a href="https://github.com/OpenActTextDev/ActuarialRegression/blob/main/Presentations/ColombiaSession4B_30June.pdf">Graphic Data Neural Networks</a>',
             "Fei Huang Thoughts on Ethics")
-Topics3 <- c('<a href="https://github.com/OpenActTextDev/ActuarialRegression/blob/main/Presentations/ColombiaSession5A_04July.pdf">Recurrent Neural Networks, Word Embedding</a>', 
-             '<a href="https://github.com/OpenActTextDev/ActuarialRegression/blob/main/Presentations/ColombiaSession5B_05July.pdf">Artificial Intelligence, Natural Language Processing, and ChatGPT</a>',
+Topics3 <- c('<a href="https://github.com/OpenActTextDev/ActuarialRegression/blob/main/Presentations/ColombiaSession5A_09July.pdf">Recurrent Neural Networks, Word Embedding</a>', 
+             '<a href="https://github.com/OpenActTextDev/ActuarialRegression/blob/main/Presentations/ColombiaSession5B_10July.pdf">Artificial Intelligence, Natural Language Processing, and ChatGPT</a>',
              "Dani Bauer Insights", "Applications and Wrap-Up")
 Topics <- c(Topics1, Topics2, Topics3)
 Dayplace <- c("Monday Morning", "", "Monday Afternoon","",

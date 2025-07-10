@@ -1,0 +1,647 @@
+---
+title: "Foundations of Statistical and Machine Learning for Actuaries  \\newline \\newline Artificial Intelligence, Natural Language
+Processing, and ChatGPT"
+author:
+  - Edward (Jed) Frees, University of Wisconsin - Madison \newline
+  - Andrés Villegas Ramirez, University of New South Wales
+#date: today  
+date: "July 2025"
+bookdown::gitbook:
+  css: style.css
+output: 
+  beamer_presentation:
+    latex_engine: xelatex 
+#    theme: "Singapore"
+    theme: "Darmstadt"    
+    colortheme: "dolphin"
+    fonttheme: "structurebold"
+header-includes:
+  - \usepackage{array}  
+  - \usepackage{colortbl} 
+  - \usepackage{booktabs}     
+  - \usepackage{arydshln} 
+  - \setbeamertemplate{footline}[frame number]
+colorlinks: yes
+---
+
+
+
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, comment=NA, message = FALSE, warning = FALSE, fig.align="center", out.width='100%', fig.asp=0.60, results = 'asis')
+
+library(ggplot2)
+library(gridExtra)
+library(kableExtra)
+library(distill)
+library(dplyr)
+options(digits = 9)
+options(scipen = 9)
+TimeCheck      <- Sys.time()
+HtmlEval <- knitr:::is_html_output()
+PdfEval  <- knitr:::is_latex_output()
+
+# if (HtmlEval) { 
+  FigRed    = "red"        ;  FigBlue   = "blue"
+  FigGreen  = "green"      ;  FigLBlue  = "lightblue"
+  FigDBlue  = "darkblue"   ;  FigDGreen = "darkgreen"
+  FigLGreen = "lightgreen" ;  FigOrange = "orange"      
+  # } else { 
+  # FigRed    = "black"      ;  FigBlue   = "black"
+  # FigGreen  = "black"      ;  FigLBlue  = "gray"
+  # FigDBlue  = "black"      ;  FigDGreen = "gray"  
+  # FigLGreen = "gray"       ;  FigOrange = "black"        
+  # }
+
+
+```
+
+```{r echo = FALSE, child = 'HideShowCode.Rmd'}
+```
+
+
+#  Schedule {-}
+   
+\vspace{-.35in}
+
+```{r Table12, echo = FALSE}
+
+Topics1 <- c("Welcome and Foundations \\newline Hello to Google Colab", 
+             "Classical Regression Modeling",
+             "Regularization, Resampling, Cross-Validation", "Classification")
+Topics2 <- c("Trees, Boosting, Bagging", "Big Data, Dimension Reduction and Non-Supervised Learning",
+            "Neural Networks", "Graphic Data Neural Networks",
+            "Fei Huang Thoughts on Ethics")
+Topics3 <- c("Recurrent Neural Networks, Text Data", "Artificial Intelligence, Natural Language Processing, and ChatGPT",
+             "Dani Bauer Insights", "Applications and Wrap-Up")
+Topics <- c(Topics1, Topics2, Topics3)
+Dayplace <- c("Monday \\newline Morning", "", "Monday \\newline Afternoon","",
+              "Tuesday  Morning", "", "Tuesday \\newline Afternoon", "", "Tuesday 4 pm",
+              "Wednesday Morning", "", "Wednesday After \\newline Lunch",  "Wednesday \\newline Afternoon")
+  #c(1, rep("",3), 2, rep("",4), 3, rep("", 3))
+Presenter <- c(rep("Jed",2), rep("Andrés", 3), rep("Jed",3), "Fei",
+               "Jed", "Jed", "Dani", "Andrés")
+DataSets <- c('Auto Liability Claims', 
+  'Medical Expenditures (MEPS)',
+  'Seattle House Sales',
+  'Victoria road crash data', "",
+  'Big Data, Dimension Reduction, and Non-Supervised Learning',
+'Seattle House Prices \\newline Claim Counts', 
+'MNIST Digits Data', "",
+'Insurer Stock Returns',
+  rep("", 3))
+Table1 <- cbind(Dayplace, Presenter, Topics, DataSets)
+colnames(Table1) <- c("Day and Time", "Presenter", "Topics", "Notebooks for Participant Activity")
+
+kableExtra::kbl(Table1,  
+                                     booktabs = T, escape = FALSE, align = 'ccl') %>%
+  kableExtra::kable_classic(full_width = FALSE) %>% 
+  column_spec(1,  width = "3.5cm") %>%
+  column_spec(3,  width = "7.5cm") %>%
+  column_spec(4,  width = "6.5cm") %>%  
+  row_spec(0,  bold = TRUE, italic = FALSE) %>%   
+  row_spec(c(2,4,6,9,11), extra_latex_after = "\\hdashline") %>% 
+  kableExtra::kable_styling(bootstrap_options = c("striped", "condensed"))  %>%
+  kable_styling(latex_options = "scale_down", font_size = 13)
+
+```
+
+
+---
+
+
+
+# Wednesday Morning 5B. Artificial Intelligence, Natural Language Processing, and ChatGPT
+
+
+### Machine Learning 
+
+*  **Machine learning** involves the development of algorithms that can learn from and make predictions or decisions based on data without being explicitly programmed. 
+   *  To illustrate this, imagine a spam filter as a practical application of machine learning. 
+   *  Instead of manually writing rules to identify spam emails, a machine learning algorithm is fed examples of emails labeled as spam and legitimate emails. 
+   *  By minimizing the error in its predictions on a training dataset, the model then learns to recognize patterns and characteristics indicative of spam, enabling it to classify new emails as either spam or not spam.
+   
+---
+
+
+### Deep Learning 
+   
+*  **Deep learning** is a subset of machine learning that focuses on utilizing neural networks with three or more layers (also called deep neural networks) to model complex patterns and abstractions in data. 
+   *  In contrast to deep learning, traditional machine learning requires manual feature extraction. This means that human experts need to identify and select the most relevant features for the model.   
+   
+---
+
+### The Scope of Artificial Intelligence
+   
+*  While the field of **AI** is now dominated by machine learning and deep learning, it also includes other approaches—for example, using rule-based systems, genetic algorithms, expert systems, fuzzy logic, or symbolic reasoning.
+
+\bigskip
+
+```{r, echo=FALSE, out.width='105%'}
+knitr::include_graphics("Figures/LLMsGenAI.png")
+
+```
+
+\tiny{
+ *Credit*: -   [Build a Large Language Model (From Scratch)](https://lightning.ai/courses/deep-learning-fundamentals/)
+} 
+
+---
+
+## A Short History of Large Language Models
+
+\begin{small}
+\begin{itemize}
+
+\item 2017: {\bf Transformer architecture} is proposed based on the {\bf self-attention mechanism}, which would then become the de facto architecture for most of the subsequent DL systems (Vaswani et al., 2017);
+\item 2018: GPT-1 ({\bf G}enerative {\bf P}re-Trained {\bf T}ransformer) for natural language processing with 117 million parameters, starting a series of advances in the so-called {\bf large language models (LLMs)};
+\begin{itemize}
+\item 2019: GPT-2 with 1.5 billion parameters;
+\item 2020: GPT-3 with 175 billion parameters;
+\end{itemize}
+\item 2022: ChatGPT: a popular chatbot built on GPT-3, astonished the general public, sparking numerous discussions and initiatives centered on AI safety;
+\item 2023: GPT-4 with ca. 1 trillion parameters (OpenAI, 2023), which allegedly already shows some sparks of artificial general intelligence (AGI) (Bubeck et al., 2023).
+\end{itemize}
+\end{small}
+
+\tiny{
+*Source:* [Portfolio Optimization: Theory and Applications, 2025, by Daniel P. Palomar](https://bookdown.org/palomar/portfoliooptimizationbook/)
+}
+
+---
+
+### Disclaimer
+
+*  I use ChatGPT as an example of an AI system simply because it is well known.
+   *  There are other great tools available
+*  In addition, I note that the [University of Wisconsin endorses other tools](https://it.wisc.edu/news/smart-choices-why-uw-madisons-enterprise-ai-tools-should-be-your-go-to/).
+   *  They prefer Microsoft 365 **Copilot Chat** and **Google Gemini**
+   *  They also recommend meeting tools such as *Webex AI Assistant* and *Zoom AI Companion*
+*  Part of their rational is that, unlike public AI services, these tools prevent your data from being used to train AI models while providing secure support for writing, research, and administrative tasks. 
+   
+---
+   
+
+### Large Language Models 
+
+*  As we have seen, the phrase *natural language processing* (NLP) refers to broad field of computer science and linguistics focused on how machines process and understand human language.
+*  I now wish to focus on a subset of NLP, a *Large Language Model* (LLM). 
+   *  This is a large-scale, deep learning-based model (e.g., GPT, BERT) that is trained on massive text corpora. 
+   *  Its purpose is to **predict** or **generate** language.
+
+---
+
+### Large Language Models (LLMs)
+
+*  Modern LLMs are trained in two main steps:
+   *  They are pretrained on a large corpus of unlabeled text by using the prediction of the next word in a sentence as a label.
+   *  They are fine-tuned on a smaller, labeled target dataset to follow instructions or perform classification tasks.
+   
+
+```{r, echo=FALSE, out.width='100%'}
+knitr::include_graphics("Figures/LLMsPredict.png")
+```
+
+\tiny{
+ *Credit*: -   [Build a Large Language Model (From Scratch)](https://lightning.ai/courses/deep-learning-fundamentals/)
+} 
+   
+
+---
+
+### Word Embedding and Large Language Models
+
+*  **Pre-training models**
+   *   One popular method for training word embeddings is Word2Vec, which uses a neural network to predict the surrounding words of a target word in a given context. 
+   *   Another: GloVe (Global Vectors for Word Representation), which leverages global statistics to create embeddings.
+*  The embedding size refers to the dimensionality of the model’s hidden states. 
+   *   It is a tradeoff between performance and efficiency. 
+   *   The smallest GPT-2 models (117M parameters) use an embedding size of 768 dimensions to provide concrete examples. 
+   *   The largest GPT-3 model (175B parameters) uses an embedding size of 12,288 dimensions. 
+*  The byte pair encoding (BPE) tokenizer used for LLMs like GPT-2 and GPT-3 can efficiently handle unknown words by breaking them down into subword units or individual characters. 
+
+
+---
+   
+
+
+### Features of LLMs {-}
+
+*  An LLM is a neural network designed to understand, generate, and respond to human-like text. 
+*  The “large” in “large language model” refers to both the model’s size in terms of parameters and the immense dataset on which it’s trained.
+*  LLMs have remarkable capabilities to understand, generate, and interpret human language.
+   *  They can process and generate text in ways that appear coherent and contextually relevant
+   *  They **do not** possess human-like consciousness or comprehension. 
+*  LLMs are trained on vast quantities of text data. 
+   *  This allows LLMs to capture deeper contextual information and subtleties of human language compared to previous approaches.
+
+
+
+---
+
+
+### Insurance Examples of Text Data
+
+*  **1. Claims Processing and Triage**
+   *  Use Cases:
+      * Automatically extract and interpret **incident descriptions** from claim forms.
+      * Assign priority, flag for fraud, or route to the appropriate handler.
+   *  Example Tasks:
+      * **Named Entity Recognition** to find people, dates, locations in free-text descriptions.
+      * **Text classification** to categorize claims (e.g., fire, theft, flood).
+   *  References:
+      * Chen et al. (2020) – *“Automated Claims Triage using Natural Language Processing”*, Applied AI in Insurance (Zurich Insurance).
+      * McKinsey (2021) – *“The next frontier in claims automation”* emphasizes NLP's role in triage and fraud detection.
+      
+---
+
+### Insurance Examples of Text Data 2
+
+*  **2. Underwriting Support from Unstructured Documents**
+   *  Use Case: Extract key information from **insurance applications, medical reports, or inspection documents**.
+   *  Example Tasks:
+      * Optical Character Recognition (OCR) + NLP to process PDFs.
+      * Extracting risk factors from physician notes or building inspections.
+   *  References:
+      * Accenture (2020) – Reported insurers can reduce underwriting time by 30–50% by incorporating AI/NLP.
+       * IEEE Access, 2022: *“Text Mining for Underwriting Automation in Life Insurance”* — explores risk evaluation from unstructured EHRs.
+*  **3. Customer Sentiment and Service Feedback**
+   *   Use Case: Analyze **customer emails, chat logs, and surveys** to detect dissatisfaction or emerging issues.
+   *  Reference: Eling & Lehmann (2018): *“The Impact of Digital Transformation on the Insurance Industry”*, *Geneva Papers on Risk and Insurance*.
+
+---
+
+### Insurance Examples of Text Data 3
+
+*  **4. Fraud Detection from Narrative Discrepancies**
+   *  Use Case: Compare **free-text statements** from claimants, police reports, and witnesses to identify inconsistencies.
+   *  Example Tasks:
+      * Semantic similarity
+      * Stylometry or linguistic anomaly detection
+   *  References:
+      * ABI (UK Association of British Insurers, 2022) – Emphasizes increasing use of NLP for fraud flagging.
+      * IEEE Transactions on Knowledge and Data Engineering, 2021 – *“Deep Learning for Insurance Fraud Detection from Claims Text”*.
+
+---
+
+### Insurance Examples of Text Data 4
+
+
+*  **5. Policy Recommendations and Chatbots**
+   *  Use Case: Power **intelligent virtual assistants** that understand user intent in natural language.
+   *  Example Tasks:
+      *  Intent classification ("I want to insure my house")
+      *  Dialogue systems (multi-turn policy recommendation)
+   * References:
+      *  **Lemonade Insurance** uses NLP-based bots ("Maya") to issue policies and process claims.
+      *  EY Report (2021) – *“AI in insurance: Closing the customer expectation gap”*.
+*  **6. Litigation and Legal Document Review**
+   * Use Case: Analyze legal documents, policy clauses, and court cases related to **coverage disputes** or litigation.
+   * Example Tasks:
+      *  Clause extraction
+      *  Document classification (e.g., denial vs approval)
+   * References:
+      *  Insurance Law NLP Project (Stanford) – Applied BERT models to coverage litigation texts.
+      *  ACORD & LIMRA Reports – Industry data standards increasingly enable NLP-driven contract analytics.
+
+---
+
+### Caveats
+
+
+*  These sources were generated by  **ChatGPT**
+*  However, a check later by another Large Language Model, Microsoft's *Copilot*, found that the use cases were
+   *  Technically feasible with current NLP tools.
+   *  Supported by credible references (academic, industry, or real-world implementations).
+   *  Relevant to actuarial and insurance domains.
+*  However, **not all** the references were real and accurate
+   *  Some were "likely illustrative", "Plausible, but not directly verifiable", and "likely inspired by real work."
+*  In large language models (LLMs), "hallucinations" refer to the phenomenon where the model generates information that is false, misleading, or nonsensical, even if it appears coherent and plausible.    
+   *  See, for example, [A Survey on Hallucination in Large Language Models: Principles, Taxonomy, Challenges, and Open Questions](https://arxiv.org/abs/2311.05232) - widely cited!
+
+
+
+
+---
+
+*  Here is plan for building a LLM.
+
+```{r, echo=FALSE, out.width='110%'}
+knitr::include_graphics("Figures/BuildLLM.png")
+```
+
+\tiny{
+ *Credit*: -   [Build a Large Language Model (From Scratch)](https://lightning.ai/courses/deep-learning-fundamentals/)
+} 
+
+
+---
+
+
+### Autoencoding {-}
+
+*  To understand the transformer architecture, it is helpful to introduce *encoder* and *decoder* concepts.
+   *  To do so, let us also introduce the idea of autoencoding.
+*  An **autoencoder** is a type of neural network trained to reconstruct its input. It learns a compressed (encoded) representation and then reconstructs the original data from that encoding.
+*  It consists of two parts:
+   *  **Encoder**: Compresses the input into a lower-dimensional representation
+$$
+{\bf z} = f_{enc}({\bf x})
+$$
+   *  **Decoder**: Reconstructs the input from the latent code
+$$
+\hat{\bf x} = f_{dec}({\bf z})
+$$
+
+---
+
+*  The network is trained to minimize:
+$$
+||{\bf x} - \hat{\bf x} ||^2
+$$
+*  How can autoencoding be used?
+   *  Data compression
+   *  Feature extraction
+   *  Nonlinear PCA (in fact, autoencoders are often viewed as nonlinear generalizations of PCA)
+   *  Denoising representations
+   *  Low-dimensional embeddings for visualization
+\vspace{-.1in}
+```{r, echo=FALSE, out.width='40%'}
+knitr::include_graphics("Figures/Autoencoder2.png")
+```
+
+---
+
+*  Auto-Encoders are neural networks used in unsupervised learning
+   *  In this way, we can compress image data (recall more traditional methods like principal components analysis)
+*  Since we condense information (compression!), the predictions generally won’t be perfect   
+   *  One can represent the image information via a (limited) set of numbers and thus compare image by similarity of those numbers
+
+```{r, echo=FALSE, out.width='80%'}
+knitr::include_graphics("Figures/Autoencoder.png")
+```
+
+\vspace{-.1in}
+If you have time and interest, check out this [terrific tutorial on auto-encoders](https://nbviewer.org/github/benjaminirving/mlseminars-autoencoders/blob/master/Autoencoders.ipynb)
+
+---
+
+## Transformer Architecture
+
+*  LLMs utilize an architecture called the *transformer*
+   *  This allows them to pay selective attention to different parts of the input when making predictions
+   *  It makes them especially adept at handling the nuances and complexities of human language.
+*  A **transformer** is a deep learning model architecture designed for handling sequences (like language) using a mechanism called **self-attention**. 
+   *  It replaces recurrent models like LSTMs and GRUs with multi-head attention and feedforward layers, enabling fast, scalable training.
+*  The input embeddings consist of word embeddings and **positional encoders**.
+
+---
+
+### Positional Encoders
+
+*  **Positional encoding** is added to capture word order (since the model lacks recurrence). Transformers process all tokens in parallel (via self-attention), so unlike RNNs or CNNs, there is no inherent sequence or position.
+   *  The positional encoder is a vector added to the word embedding of each token to indicate its position in the sequence. 
+   *  It is calculated using a deterministic formula involving sine and cosine functions.
+   *  Sines and cosines are use because the can correspond to a different frequencies and are smooth, continuous, and differentiable patterns.
+
+---
+
+   
+   *  Just for fun, here are some formulas:
+$$
+\begin{array}{ll}
+PE_{(pos,2i)} &= \sin \left( \frac{pos}{10000^{2i/d}} \right) \\
+PE_{(pos,2i+1)} &= \cos \left( \frac{pos}{10000^{2i/d}} \right)
+\end{array}
+$$
+   *  with $pos$ = position in the sequence, $i$ = dimension index, $d$  = total number of dimensions (e.g., 300). 
+   
+---
+
+```{r, echo=FALSE, out.width='80%'}
+knitr::include_graphics("Figures/Transformers.png")
+
+```
+
+\tiny{
+ *Credit*: [Dani Bauer Lecture Notes](https://github.com/danielbauer1979/MSDIA_PredictiveModelingAndMachineLearning)
+} 
+   
+   
+---
+
+### Self-attention mechanism
+   
+*  A key component of transformers and LLMs is the **self-attention mechanism**
+   *  It allows the model to weigh the importance of different words or tokens in a sequence relative to each other. 
+   *  This mechanism enables the model to capture long-range dependencies and contextual relationships within the input data, enhancing its ability to generate coherent and contextually relevant output. 
+   *  The attention mechanism gives the LLM selective access to the whole input sequence when generating the output one word at a time. 
+   *  In contrast, with a RNN, one only retains a *summary* of the history in a "memory cell". This means one can loose information. Not a problem for short, concise sentences but can be an issue for longer, more complex sentences.
+
+
+
+---
+
+   
+### Attention Mechanism
+
+*  Here is an application, translating German to English
+*  To predict the second token ("you"), the transformer can rely upon previous English words and *all* of the German words.
+   *  Each word/token receives a so-called "attention weight".
+   *  Note that the German word "du" has a large black dot, indicating its score is high...
+
+
+```{r, echo=FALSE, out.width='90%'}
+knitr::include_graphics("Figures/AttentionMechanism.png")
+```
+
+\tiny{
+ *Credit*: -   [Build a Large Language Model (From Scratch)](https://lightning.ai/courses/deep-learning-fundamentals/)
+} 
+ 
+
+---
+
+
+### [What Is ChatGPT Doing - and Why Does It Work? by Wolfram 2023](https://writings.stephenwolfram.com/2023/02/what-is-chatgpt-doing-and-why-does-it-work/) 
+
+```{r, echo=FALSE, out.width='55%', out.height='55%', fig.align= 'center'}
+knitr::include_graphics("Figures/Wolfram.png")
+
+```
+
+\bigskip
+
+>What ChatGPT is always fundamentally trying to do is to produce a “reasonable continuation” of whatever text it’s got so far, where by “reasonable” we mean “what one might expect someone to write after seeing what people have written on billions of webpages, etc.”
+
+---
+
+### What Is ChatGPT Doing - and Why Does It Work?
+
+
+>The idea of transformers is to do something at least somewhat similar for sequences of tokens that make up a piece of text. But instead of just defining a fixed region in the sequence over which there can be connections, transformers instead introduce the notion of “attention” — and the idea of “paying attention” more to some parts of the sequence than others.
+
+\bigskip
+
+>... even given all that training data, it’s certainly not obvious that a neural net would be able to successfully produce “human-like” text. And, once again, there seem to be detailed pieces of engineering needed to make that happen. But the big surprise—and discovery—of ChatGPT is that it’s possible at all. 
+
+---
+
+### A Success Story
+
+*  The [Spanish translation of my regression book](https://openacttextdev.github.io/RegressionSpanish/index.html) was done by *ChatGPT* (over the course of several months)
+*  It is currently being reviewed by a team of experts for readability.
+
+
+```{r, echo=FALSE, out.width='55%', out.height='55%', fig.align= 'center'}
+knitr::include_graphics("Figures/FreesSpanishRegression.png")
+
+```
+
+
+
+
+---
+
+
+
+## Generative AI
+
+Generative AI is a field within AI focused on creating machines capable of performing tasks that previously required human intelligence. 
+
+*  Traditional AI: Primarily excels at classification and prediction tasks. Examples include identifying objects in an image (e.g., identifying a “cat”).
+*  Generative AI: Goes beyond classification, excelling at content creation, such as generating new text, images, or music. 
+
+Use of deep learning to augment creative activities such as writing, music and art, to generate new things.
+
+Some applications: text generation, deep dreaming, neural style transfer, variational autoencoders and generative adversarial networks.
+
+---
+
+The following list outlines free tools that are used in specific sub-domains of GenAI:
+
+*   **Text**: ChatGPT (Free), Claude, Gemini
+*   **Images**: Bing Image Creator, Ideogram, Leonardo AI (free tokens)
+*   **Video**: RunwayML (basic tier), Pika Labs (free credits)
+*   **PDFs**: ChatPDF, Humata
+*   **Product mockups**: Kittl, Canva AI
+
+\tiny{
+*Source:* https://www.analyticsvidhya.com/blog/2025/05/getting-into-gen-ai/
+
+See also https://www.linkedin.com/pulse/what-generative-ai-llm-luis-escalante.
+}
+
+
+---
+
+### Resources For Future Studies
+
+-   Sebastian Raschka [Build a Large Language Model (From Scratch)](https://lightning.ai/courses/deep-learning-fundamentals/)
+    -   [Raschka Teaching Site](https://sebastianraschka.com/teaching/)
+-   ["Speech and Language Processing" by Dan Jurafsky and James H. Martin](https://web.stanford.edu/~jurafsky/slp3/)
+    -   *Course:* [Stanford CS224n - Natural Language Processing with Deep Learning - YouTube Lectures](https://www.youtube.com/playlist?list=PLoROMvodv4rOSH4v6133s9LFPRHjEmbmJ)
+
+
+
+```{=latex}
+\begin{figure}[htbp]
+\centering
+\begin{minipage}{0.30\textwidth}
+  \centering
+  \includegraphics[width=0.9\linewidth]{Figures/RaschkaBook.png}
+\end{minipage}
+\hspace{0.05\textwidth}
+\begin{minipage}{0.30\textwidth}
+  \centering
+  \includegraphics[width=0.9\linewidth]{Figures/SpeechBook.png}
+\end{minipage}
+\end{figure}
+```
+
+---
+
+### More Resources For Future Studies
+
+-   [Dive Into Deep Learning](https://d2l.ai/)
+-   [Hands on LLMs](https://www.llm-book.com/)
+
+
+
+```{=latex}
+\begin{figure}[htbp]
+\centering
+\begin{minipage}{0.30\textwidth}
+  \centering
+  \includegraphics[width=0.9\linewidth]{Figures/DiveIntoDeepLearning.png}
+\end{minipage}
+\hspace{0.05\textwidth}
+\begin{minipage}{0.30\textwidth}
+  \centering
+  \includegraphics[width=0.9\linewidth]{Figures/HandsOnLLMs.png}
+\end{minipage}
+\end{figure}
+```
+
+---
+
+## Appendix
+
+### Attention Mechanism
+
+*  The networks we have focused on have been a well-defined size, such as $28 \times 28$ grid of pixels for graphic data. 
+*  In contrast, natural language processing inputs tend to be variable sized, processing sequentially one token at a time.
+*  To handle this, it has become traditional to think in terms of database concepts including **queries**, **keys**, and **values**, so let's review these ideas first.
+*  For instance, a database might consist of tuples {(“Zhang”, “Aston”), (“Lipton”, “Zachary”), (“Li”, “Mu”), (“Smola”, “Alex”), (“Hu”, “Rachel”), (“Werness”, “Brent”)} with the last name being the **key** and the first name being the **value**. Then a **query** such as "Li" would return the value of "Mu". 
+
+---
+
+We can design queries **q** that operate on **(k v,)** pairs in such a manner as to be valid regardless of the database size. Define the database
+$$
+D = \{ ({\bf k}_1,{\bf v}_1), \ldots, ({\bf k}_m,{\bf v}_m),  \}
+$$
+We can define the *attention* over $D$ to be
+$$
+\text{Attention}({\bf q},D) = \sum_{i=1}^m \alpha({\bf q}, {\bf k}_i) {\bf v}_i
+$$
+where $\alpha({\bf q}. {\bf k}_i)$ are scalar attention weights. 
+
+*  For interpretation, suppose instead we use ${\bf x}_i={\bf k}_i$ for a set of features, the query is a specific point in the feature space, ${\bf x}={\bf q}$, and the values $y_i=v_i$ are labeled responses. 
+*  Then, we can interpret $\text{Attention}({\bf x},D) = \sum_{i=1}^m \alpha({\bf x}, {\bf x}_i) y_i$ to be a local (nonparametric) regression approximation of a conditional expected value. 
+*  In this case, we interpret $\alpha(\cdot)$ to be a "kernel" function from classical statistics.
+
+---
+
+For natural language process applications, it is common to use a *softmax* function
+$$
+\alpha({\bf q}, {\bf k}_i) = \frac{\exp(a({\bf q}, {\bf k}_i))}{\sum_j \exp(a({\bf q}, {\bf k}_j))}
+$$
+and choose the *inner product* for $a(\cdot)$ to represent *similarity* between the query and each key. This choice means the weights sum to 1. Further, it is differentiable and its gradient never vanishes, all of which are desirable properties in a model.
+
+
+```{r, echo=FALSE, out.width='60%',  fig.align= 'center'}
+knitr::include_graphics("Figures/AttentionKeys.png")
+
+```
+
+\tiny{
+*Credit*: [Dive Into Deep Learning, Chapter 11](https://d2l.ai/)
+}
+
+---
+
+### Attention Scoring Functions
+
+*  The queries and keys may not be of the same length in which case one uses a so-call *masked softmax operation*, that is, instead of $\sum_{i=1}^m \alpha({\bf q}, {\bf k}_i) {\bf v}_i$ use $\sum_{i=1}^l \alpha({\bf q}, {\bf k}_i) {\bf v}_i$ when the length of the query $l<m$.
+*  *Batch matrix multiplication* is defined so we can do a set of queries at the same time.
+*  The dot product is typically rescaled by $1/\sqrt(d)$, where $d$ is the dimension of the query and keys.
+*  **Additive Attention**. When the queries and keys are of different length, one can use and *additive attention* score of the form:
+$$
+a({\bf q}, {\bf k}) = {\bf w}_v' \text{tanh}({\bf W}_q{\bf q} + {\bf W}_k{\bf k})
+$$
+where $\{{\bf W}_q,{\bf W}_k\}$ are learnable parameters.
+
+
+
+
+
+
