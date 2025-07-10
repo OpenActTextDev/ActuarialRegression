@@ -100,8 +100,8 @@ This course will provide participants with a guided tour of the statistical and 
 
 Topics1 <- c('<a href="https://github.com/OpenActTextDev/ActuarialRegression/blob/main/Presentations/ColombiaSession1A_30June.pdf">Welcome and Foundations <br> Hello to Google Colab</a>', 
              '<a href="https://github.com/OpenActTextDev/ActuarialRegression/blob/main/Presentations/ColombiaSession1B_30June.pdf">Classical Regression Modeling</a>',
-             "Regularization, Resampling, Cross-Validation", "Classification")
-Topics2 <- c("Trees, Boosting, Bagging", 
+             '<a href="https://github.com/OpenActTextDev/ActuarialRegression/blob/main/Presentations/ColombiaSession2A_10July.pdf">Resampling, Cross-validation and Regularisation</a>', '<a href="https://github.com/OpenActTextDev/ActuarialRegression/blob/main/Presentations/ColombiaSession2B_10July.pdf">Classification, Logistic Regression and Trees</a>')
+Topics2 <- c('<a href="https://github.com/OpenActTextDev/ActuarialRegression/blob/main/Presentations/ColombiaSession3A_10July.pdf">Tree-based Ensemble methods and Interpretability</a>', 
              '<a href="https://github.com/OpenActTextDev/ActuarialRegression/blob/main/Presentations/ColombiaSession3B_30June.pdf">Big Data, Dimension Reduction and Non-Supervised Learning</a>',
             '<a href="https://github.com/OpenActTextDev/ActuarialRegression/blob/main/Presentations/ColombiaSession4A_30June.pdf">Neural Networks</a>', 
             '<a href="https://github.com/OpenActTextDev/ActuarialRegression/blob/main/Presentations/ColombiaSession4B_30June.pdf">Graphic Data Neural Networks</a>',
@@ -118,8 +118,8 @@ Presenter <- c(rep("Jed",2), rep("Andrés", 3), rep("Jed",3), "Fei",
                "Jed", "Jed", "Dani", "Andrés")
 DataSets <- c('<a href="https://nbviewer.org/github/OpenActTextDev/ActuarialRegression/blob/main/Notebooks/AutoLiabilityClaims.ipynb">Auto Liability Claims</a>', 
   '<a href="https://nbviewer.org/github/OpenActTextDev/ActuarialRegression/blob/main/Notebooks/MEPS.ipynb">Medical Expenditures (MEPS)</a>',
-  '<a href="https://www.kaggle.com/datasets/harlfoxem/housesalesprediction">Seattle House Sales Data</a>',
-  '<a href="https://discover.data.vic.gov.au/dataset/victoria-road-crash-data">Victoria road crash data</a>', "",
+  '<a href="https://github.com/OpenActTextDev/ActuarialRegression/blob/main/Notebooks/HousePriceRegularisation.ipynb">Seattle House Prices</a>',
+  '<a href="https://github.com/OpenActTextDev/ActuarialRegression/blob/main/Notebooks/VicRoadCrash.ipynb">Victoria road crash data</a>', '<a href="https://github.com/OpenActTextDev/ActuarialRegression/blob/main/Notebooks/VicRoadCrash.ipynb">Victoria road crash data</a>',
   '<a href="https://nbviewer.org/github/OpenActTextDev/ActuarialRegression/blob/main/Notebooks/BigDataDimReduction.ipynb">Big Data, Dimension Reduction, and Non-Supervised Learning</a>',
 '<a href="https://nbviewer.org/github/OpenActTextDev/ActuarialRegression/blob/main/Notebooks/HousePriceRegression.ipynb">Seattle House Prices</a><br><a href="https://github.com/OpenActTextDev/ActuarialRegression/blob/main/Notebooks/ClaimCounts.ipynb">Claim Counts</a>', 
 '<a href="https://nbviewer.org/github/OpenActTextDev/ActuarialRegression/blob/main/Notebooks/MNIST.ipynb">MNIST Digits Data</a>', "",
