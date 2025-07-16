@@ -122,7 +122,7 @@ DataSets <- c('<a href="https://nbviewer.org/github/OpenActTextDev/ActuarialRegr
   '<a href="https://nbviewer.org/github/OpenActTextDev/ActuarialRegression/blob/main/Notebooks/BigDataDimReduction.ipynb">Big Data, Dimension Reduction, and Non-Supervised Learning</a>',
 '<a href="https://nbviewer.org/github/OpenActTextDev/ActuarialRegression/blob/main/Notebooks/HousePriceRegression.ipynb">Seattle House Prices</a><br><a href="https://github.com/OpenActTextDev/ActuarialRegression/blob/main/Notebooks/ClaimCounts.ipynb">Claim Counts</a>', 
 '<a href="https://nbviewer.org/github/OpenActTextDev/ActuarialRegression/blob/main/Notebooks/MNIST.ipynb">MNIST Digits Data</a>', "",
-'<a href="https://nbviewer.org/github/OpenActTextDev/ActuarialRegression/blob/main/Notebooks/InsurerStockReturns.ipynb">Insurance Stock Returns</a>',
+'<a href="https://colab.research.google.com/github/OpenActTextDev/ActuarialRegression/blob/main/Notebooks/InsurerStockReturns.ipynb">Insurance Stock Returns</a>',
   rep("", 3))
 Footer_row <- c("", "",
   "*Click on a Topic to take you to a pdf of the slides.","*Click on a Notebook to take you to an html of the notebook (provided by NB viewer).")
