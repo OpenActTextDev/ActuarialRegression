@@ -3,7 +3,7 @@ title: "Foundations of Statistical and Machine Learning for Actuaries"
 author:
   - Edward (Jed) Frees, University of Wisconsin - Madison
   - Andrés Villegas Ramirez, University of New South Wales
-date: 14 July 2025
+date: 21 July 2025
 format:
   html:
 #  docx:
