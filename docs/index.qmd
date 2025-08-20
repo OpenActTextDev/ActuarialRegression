@@ -315,3 +315,25 @@ The Python machine learning community is much larger than the corresponding R-us
 
 </div>
 
+# Group Photos {-}
+ 
+
+
+`r HideText('Photos.Hide', 'Some Group Photos')`   
+
+Our session in Bogotá.
+
+```{r, echo=FALSE, out.width='100%', out.height='100%', fig.align= 'center'}
+knitr::include_graphics("GroupBogota.jpg")
+
+```
+
+Our session in Medillín.
+
+```{r, echo=FALSE, out.width='100%', out.height='100%', fig.align= 'center'}
+knitr::include_graphics("GroupMedillin.jpg")
+
+```
+
+</div>
+
